@@ -5,16 +5,18 @@ import 'package:itine/core/constants/app_typography.dart';
 class CustomTextFormField extends StatefulWidget {
   CustomTextFormField({
     super.key,
-    required this.label,
+    this.label,
     required this.hint,
     required this.visible,
     required this.controller,
+    this.leading,
   });
 
-  final String label;
+  final String? label;
   final String hint;
   bool visible;
   final TextEditingController controller;
+  final Widget? leading;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -26,10 +28,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          widget.label,
-          style: AppTypography.headline4,
-        ),
+        widget.label != null
+            ? Text(
+                widget.label ?? '',
+                style: AppTypography.headline4,
+              )
+            : const SizedBox(),
         const SizedBox(
           height: 10,
         ),
@@ -56,8 +60,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             ),
             hintText: widget.hint,
             hintStyle: AppTypography.hint,
-            prefix: null,
-            //suffix: const Icon(Icons.remove_red_eye_sharp),
+            prefixIcon: widget.leading,
+            //suffixIcon: const Icon(Icons.remove_red_eye_sharp),
             alignLabelWithHint: true,
             floatingLabelBehavior: FloatingLabelBehavior.always,
           ),
