@@ -5,11 +5,13 @@ import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/presentation/widgets/common/CustomButton.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
 
-class SigninScreen extends StatelessWidget {
-  SigninScreen({super.key});
+class SignupScreen extends StatelessWidget {
+  SignupScreen({super.key});
 
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,21 +26,30 @@ class SigninScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Spacer(),
-                const Text('Connexion', style: AppTypography.headline1),
+                const Text('Inscription', style: AppTypography.headline1),
                 const SizedBox(
-                  height: 35,
+                  height: 15,
                 ),
                 const Text(
-                  'Bon retour! Entrez vos informations de connection.',
+                  'Bienvenu ! Entrez les informations pour créer votre compte.',
                   style: AppTypography.subtitle2,
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
                 Form(
                   child: Column(
                     children: [
+                      CustomTextFormField(
+                        label: 'Nom',
+                        hint: 'John Doe',
+                        controller: nameController,
+                        visible: true,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       CustomTextFormField(
                         label: 'Email',
                         hint: 'exemple@gmail.com',
@@ -55,26 +66,20 @@ class SigninScreen extends StatelessWidget {
                         visible: false,
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 10,
                       ),
-                      GestureDetector(
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            'Mot de passe oublié',
-                            style: AppTypography.subtitle2.copyWith(
-                              color: AppColors.primary,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                        ),
+                      CustomTextFormField(
+                        label: 'Numéro de téléphone',
+                        hint: '+33 9 129 3901',
+                        controller: phoneNumberController,
+                        visible: true,
                       ),
                       const SizedBox(
-                        height: 35,
+                        height: 40,
                       ),
                       CustomButton(
                           child: Text(
-                            'Se connecter',
+                            "S'inscrire",
                             style: AppTypography.subtitle1
                                 .copyWith(color: Colors.white),
                           ),
@@ -87,12 +92,12 @@ class SigninScreen extends StatelessWidget {
                 ),
                 RichText(
                   text: TextSpan(
-                    text: "Vous n'avez pas encore de compte? ",
+                    text: "Vous avez déjà un compte? ",
                     style: AppTypography.subtitle2
                         .copyWith(color: Colors.grey.shade800),
                     children: [
                       TextSpan(
-                          text: "Inscrivez-vous",
+                          text: "Connectez-vous",
                           style: AppTypography.subtitle2
                               .copyWith(color: AppColors.primary)),
                     ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/utils/helpers.dart';
-import 'package:itine/presentation/ui/auth/signin_screen.dart';
+import 'package:itine/presentation/ui/auth/signup_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -12,7 +12,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       //initialRoute: '/signin',
-      home: SigninScreen(),
+      home: SignupScreen(),
       //getPages: AppPages.pages,
       theme: ThemeData(
           fontFamily: 'Poppins',
