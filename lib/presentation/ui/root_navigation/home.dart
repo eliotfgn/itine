@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
+import 'package:itine/presentation/widgets/category/category_item.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -70,6 +71,54 @@ class HomeScreen extends StatelessWidget {
                   visible: true,
                   controller: searchController,
                   leading: const Icon(Icons.search),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                const Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Catégories',
+                      style: AppTypography.headline2,
+                    ),
+                    Center(
+                      child: Text(
+                        'Voir tout',
+                        style: AppTypography.subtitle2,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: Get.width,
+                  height: 120,
+                  child: ListView(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    children: const [
+                      CategoryItem(
+                        name: 'T-shirt',
+                        icon: 'shirt',
+                      ),
+                      CategoryItem(
+                        name: 'Bas',
+                        icon: 'pants',
+                      ),
+                      CategoryItem(
+                        name: 'Robe',
+                        icon: 'dress',
+                      ),
+                      CategoryItem(
+                        name: 'Chaussures',
+                        icon: 'shoe',
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

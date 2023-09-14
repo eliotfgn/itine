@@ -8,6 +8,12 @@ class AppTypography {
     fontSize: 26,
   );
 
+  static const headline2 = TextStyle(
+    color: AppColors.secondary,
+    fontWeight: FontWeight.w500,
+    fontSize: 23,
+  );
+
   static const headline3 = TextStyle(
     color: AppColors.secondary,
     fontWeight: FontWeight.w500,
