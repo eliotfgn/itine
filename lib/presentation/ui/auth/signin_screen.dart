@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
+import 'package:itine/presentation/widgets/common/CustomButton.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
 
 class SigninScreen extends StatelessWidget {
@@ -71,24 +72,13 @@ class SigninScreen extends StatelessWidget {
                       const SizedBox(
                         height: 35,
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 15, horizontal: 10)),
+                      CustomButton(
                           child: Text(
                             'Se connecter',
                             style: AppTypography.subtitle1
                                 .copyWith(color: Colors.white),
                           ),
-                        ),
-                      ),
+                          onTap: () {}),
                     ],
                   ),
                 ),
