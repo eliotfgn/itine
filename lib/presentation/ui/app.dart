@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
-import 'package:itine/presentation/routes/app_pages.dart';
+import 'package:itine/core/utils/helpers.dart';
+import 'package:itine/presentation/ui/auth/signin_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -10,12 +11,13 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/splash',
-      getPages: AppPages.pages,
+      //initialRoute: '/signin',
+      home: SigninScreen(),
+      //getPages: AppPages.pages,
       theme: ThemeData(
-        fontFamily: 'Poppins',
-        primaryColor: AppColors.primary,
-      ),
+          fontFamily: 'Poppins',
+          primaryColor: AppColors.primary,
+          primarySwatch: getMaterialColor(AppColors.primary)),
     );
   }
 }

@@ -14,6 +14,11 @@ class AppTypography {
     fontSize: 17,
   );
 
+  static const subtitle1 = TextStyle(
+    color: Colors.black54,
+    fontSize: 19,
+  );
+
   static const subtitle2 = TextStyle(
     color: Colors.black45,
     fontSize: 17,
