@@ -82,6 +82,23 @@ class SigninScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                const SizedBox(
+                  height: 40,
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: "Vous n'avez pas encore de compte? ",
+                    style: AppTypography.subtitle2
+                        .copyWith(color: Colors.grey.shade800),
+                    children: [
+                      TextSpan(
+                          text: "Inscrivez-vous",
+                          style: AppTypography.subtitle2
+                              .copyWith(color: AppColors.primary)),
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
                 const Spacer(),
               ],
             ),
