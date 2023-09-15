@@ -10,6 +10,7 @@ class Product {
     required this.description,
     required this.price,
     required this.cover,
+    required this.categories,
     required this.images,
     required this.sizes,
     required this.colors,
@@ -20,6 +21,7 @@ class Product {
   final String description;
   final String price;
   final String cover;
+  final List<String> categories;
   final List<String> images;
   final List<String> sizes;
   final List<String> colors;
