@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/presentation/widgets/category/category_item.dart';
+import 'package:itine/presentation/widgets/category/category_pill.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,6 +21,7 @@ class HomeScreen extends StatelessWidget {
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
                   height: 20,
@@ -117,6 +119,29 @@ class HomeScreen extends StatelessWidget {
                         name: 'Chaussures',
                         icon: 'shoe',
                       ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                const Text(
+                  'Produits',
+                  style: AppTypography.headline2,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  child: Row(
+                    children: [
+                      CategoryPill(name: 'Tout', selected: false),
+                      CategoryPill(name: 'Nouveautés', selected: false),
+                      CategoryPill(name: 'Populaires', selected: true),
+                      CategoryPill(name: 'Homme', selected: false),
+                      CategoryPill(name: 'Femme', selected: false),
                     ],
                   ),
                 )
