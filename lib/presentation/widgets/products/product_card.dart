@@ -28,11 +28,21 @@ class _ProductCardState extends State<ProductCard> {
             ),
             child: Stack(
               children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    'assets/images/women/1.jpg',
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topCenter,
+                    height: double.infinity,
+                    width: double.infinity,
+                  ),
+                ),
                 Positioned(
                   right: 10,
                   top: 10,
                   child: CircleAvatar(
-                    backgroundColor: const Color(0xffF1CCA8).withOpacity(0.2),
+                    backgroundColor: const Color(0xffF1CCA8).withOpacity(0.7),
                     child: const Icon(CupertinoIcons.heart,
                         color: AppColors.secondary),
                   ),
