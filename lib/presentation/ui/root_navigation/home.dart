@@ -6,6 +6,7 @@ import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/presentation/widgets/category/category_item.dart';
 import 'package:itine/presentation/widgets/category/category_pill.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
+import 'package:itine/presentation/widgets/products/product_card.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -144,6 +145,14 @@ class HomeScreen extends StatelessWidget {
                       CategoryPill(name: 'Femme', selected: false),
                     ],
                   ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Wrap(
+                  children: [
+                    ProductCard(),
+                  ],
                 )
               ],
             ),
