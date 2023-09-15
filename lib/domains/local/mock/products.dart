@@ -17,7 +17,7 @@ List<Product> products = [
     description:
         'Découvrez notre élégante veste, le choix parfait pour ajouter une touche de style et de chaleur à votre garde-roble. Cette veste allie confort et esthétique avec son design moderne et ses materiaux de haute qualite.',
     price: 90,
-    cover: 'women/1&.jpg',
+    cover: 'women/6.jpg',
     categories: ['Nouveautés', 'Populaires', 'Femme'],
     images: [],
     sizes: ['M', 'S', 'L', 'XL', 'XXL'],

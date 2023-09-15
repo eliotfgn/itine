@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
+import 'package:itine/domains/local/mock/products.dart';
 import 'package:itine/presentation/widgets/category/category_item.dart';
 import 'package:itine/presentation/widgets/category/category_pill.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
@@ -15,6 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    products.shuffle();
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
@@ -150,9 +152,11 @@ class HomeScreen extends StatelessWidget {
                   height: 20,
                 ),
                 Wrap(
-                  children: [
-                    ProductCard(),
-                  ],
+                  spacing: 25,
+                  runSpacing: 15,
+                  children: products
+                      .map((product) => ProductCard(product: product))
+                      .toList(),
                 )
               ],
             ),

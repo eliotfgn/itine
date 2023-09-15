@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
+import 'package:itine/domains/models/product/product.dart';
 
 class ProductCard extends StatefulWidget {
-  const ProductCard({super.key});
+  const ProductCard({super.key, required this.product});
+
+  final Product product;
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -15,23 +18,23 @@ class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Get.width * 0.45,
+      width: Get.width * 0.40,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: Get.width * 0.45,
-            width: Get.width * 0.45,
+            height: Get.width * 0.40,
+            width: Get.width * 0.40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: Color(0xff704F38).withOpacity(0.7),
+              color: const Color(0xff704F38).withOpacity(0.7),
             ),
             child: Stack(
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: Image.asset(
-                    'assets/images/women/1.jpg',
+                    'assets/images/${widget.product.cover}',
                     fit: BoxFit.cover,
                     alignment: Alignment.topCenter,
                     height: double.infinity,
@@ -55,25 +58,29 @@ class _ProductCardState extends State<ProductCard> {
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Brown Jacket',
-                style: AppTypography.headline4.copyWith(fontSize: 18),
+              Expanded(
+                child: Text(
+                  widget.product.name,
+                  style: AppTypography.headline4.copyWith(fontSize: 14),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-              const Spacer(),
-              const Icon(
-                Icons.star_rounded,
-                color: Color(0xffFCAF23),
-              ),
-              Text('4.6')
+              const Row(
+                children: [
+                  Icon(
+                    Icons.star_rounded,
+                    color: Color(0xffFCAF23),
+                  ),
+                  Text('4.6'),
+                ],
+              )
             ],
           ),
-          const SizedBox(
-            height: 3,
-          ),
           Text(
-            '88 €',
-            style: AppTypography.headline3.copyWith(fontSize: 20),
+            '${widget.product.price} €',
+            style: AppTypography.headline3,
           ),
         ],
       ),
