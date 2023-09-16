@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:itine/core/constants/app_colors.dart';
 
 class CustomButton extends StatefulWidget {
-  CustomButton({
-    super.key,
-    required this.child,
-    required this.onTap,
-    this.width,
-  });
+  CustomButton(
+      {super.key,
+      required this.child,
+      required this.onTap,
+      this.width,
+      this.hPadding,
+      this.color});
 
   Widget child;
   final VoidCallback onTap;
   final double? width;
+  final double? hPadding;
+  final Color? color;
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -25,10 +29,12 @@ class _CustomButtonState extends State<CustomButton> {
         onPressed: () {},
         style: ElevatedButton.styleFrom(
             elevation: 0,
+            backgroundColor: widget.color ?? AppColors.primary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),
             ),
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10)),
+            padding: EdgeInsets.symmetric(
+                vertical: 15, horizontal: widget.hPadding ?? 10)),
         child: widget.child,
       ),
     );
