@@ -217,8 +217,8 @@ class ProductDetailsScreen extends StatelessWidget {
                             children: product.colors.map((color) {
                               int c = int.parse('0xff$color');
                               return Container(
-                                height: 45,
-                                width: 45,
+                                height: 42,
+                                width: 42,
                                 margin: const EdgeInsets.only(right: 15),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
@@ -230,8 +230,8 @@ class ProductDetailsScreen extends StatelessWidget {
                                 ),
                                 child: Center(
                                   child: Container(
-                                    height: 35,
-                                    width: 35,
+                                    height: 30,
+                                    width: 30,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: Color(c),
