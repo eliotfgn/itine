@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/presentation/widgets/category/category_card.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
+import 'package:itine/presentation/widgets/common/back_button.dart';
 
 import '../../../domains/models/category/category.dart';
 
@@ -49,25 +48,7 @@ class CategoriesScreen extends StatelessWidget {
                     .map((category) => CategoryCard(category: category))
               ],
             ),
-            Positioned(
-              left: 25,
-              top: 20,
-              child: Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  color: AppColors.secondary,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Center(
-                  child: SvgPicture.asset(
-                    'assets/icons/angle-left-solid.svg',
-                    width: 16,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            CustomBackButton(),
           ],
         ),
       ),
