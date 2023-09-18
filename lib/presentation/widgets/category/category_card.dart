@@ -13,7 +13,7 @@ class CategoryCard extends StatelessWidget {
       height: 130,
       margin: const EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
-        image: const DecorationImage(
+        image: DecorationImage(
           image: AssetImage('assets/images/${category.image}'),
           fit: BoxFit.fitWidth,
         ),

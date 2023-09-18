@@ -4,10 +4,24 @@ import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/presentation/widgets/category/category_card.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
 
+import '../../../domains/models/category/category.dart';
+
 class CategoriesScreen extends StatelessWidget {
   CategoriesScreen({super.key});
 
   final TextEditingController searchController = TextEditingController();
+
+  List<Category> categories = [
+    Category(name: 'Nouveautés', image: 'women/11.jpg'),
+    Category(name: 'Femme', image: 'women/10.jpg'),
+    Category(name: 'Homme', image: 'men/8.jpg'),
+    Category(name: 'Robes', image: 'women/9.jpg'),
+    Category(name: 'Bas', image: 'pants/1.jpeg'),
+    Category(name: 'Chemises', image: 't-shirt/1.jpeg'),
+    Category(name: 'T-shirt', image: 'men/2.jpg'),
+    Category(name: 'Chaussures', image: 'shoes/1.jpg'),
+    Category(name: 'Chapeau', image: 'hats/1.png'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +45,8 @@ class CategoriesScreen extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                CategoryCard(),
-                CategoryCard(),
-                CategoryCard(),
-                CategoryCard(),
-                CategoryCard(),
+                ...categories
+                    .map((category) => CategoryCard(category: category))
               ],
             ),
             Positioned(
