@@ -62,7 +62,7 @@ class CategoriesScreen extends StatelessWidget {
                 child: Center(
                   child: SvgPicture.asset(
                     'assets/icons/angle-left-solid.svg',
-                    width: 20,
+                    width: 16,
                     color: Colors.white,
                   ),
                 ),
