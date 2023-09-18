@@ -7,19 +7,9 @@ import 'package:itine/domains/models/product/product.dart';
 import 'package:itine/presentation/widgets/common/CustomButton.dart';
 
 class WishlistItem extends StatelessWidget {
-  WishlistItem({super.key});
+  WishlistItem({super.key, required this.product});
 
-  final Product product = Product(
-    name: "Robe d'été en lin",
-    description:
-        'Découvrez notre élégante veste, le choix parfait pour ajouter une touche de style et de chaleur à votre garde-roble. Cette veste allie confort et esthétique avec son design moderne et ses materiaux de haute qualite.',
-    price: 67.23,
-    cover: 'women/8.jpg',
-    categories: ['Nouveautés', 'Populaires', 'Femme'],
-    images: [],
-    sizes: ['M', 'S', 'L', 'XL', 'XXL'],
-    colors: ['F7C600', '12dc3a'],
-  );
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +18,7 @@ class WishlistItem extends StatelessWidget {
       direction: DismissDirection.endToStart,
       background: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15),
+        margin: const EdgeInsets.only(bottom: 30),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: AppColors.secondary,
@@ -43,6 +34,7 @@ class WishlistItem extends StatelessWidget {
         ),
       ),
       child: Container(
+        margin: const EdgeInsets.only(bottom: 30),
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         decoration: BoxDecoration(
             color: Colors.white,

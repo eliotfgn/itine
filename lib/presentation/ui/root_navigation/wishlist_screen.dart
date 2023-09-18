@@ -1,10 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:itine/core/constants/app_typography.dart';
+import 'package:itine/domains/models/product/product.dart';
 import 'package:itine/presentation/widgets/common/back_button.dart';
 import 'package:itine/presentation/widgets/products/wishlist_item.dart';
 
 class WishlistScreen extends StatelessWidget {
-  const WishlistScreen({super.key});
+  WishlistScreen({super.key});
+
+  List<Product> products = [
+    Product(
+      name: "Robe d'été en lin",
+      description:
+          'Découvrez notre élégante veste, le choix parfait pour ajouter une touche de style et de chaleur à votre garde-roble. Cette veste allie confort et esthétique avec son design moderne et ses materiaux de haute qualite.',
+      price: 67.23,
+      cover: 'women/8.jpg',
+      categories: ['Nouveautés', 'Populaires', 'Femme'],
+      images: [],
+      sizes: ['M', 'S', 'L', 'XL', 'XXL'],
+      colors: ['F7C600', '12dc3a'],
+    ),
+    Product(
+      name: 'Veste en jean décontractée',
+      description:
+          'Découvrez notre élégante veste, le choix parfait pour ajouter une touche de style et de chaleur à votre garde-roble. Cette veste allie confort et esthétique avec son design moderne et ses materiaux de haute qualite.',
+      price: 67,
+      cover: 'men/14.jpg',
+      categories: ['Nouveautés', 'Populaires', 'Homme', 'Haut'],
+      images: [],
+      sizes: ['M', 'S', 'L', 'XL', 'XXL'],
+      colors: [],
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +52,7 @@ class WishlistScreen extends StatelessWidget {
                 const SizedBox(
                   height: 25,
                 ),
-                WishlistItem(),
+                ...products.map((product) => WishlistItem(product: product))
               ],
             ),
             const CustomBackButton(),
