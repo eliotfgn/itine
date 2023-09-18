@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:itine/core/constants/app_colors.dart';
 
 class CustomButton extends StatefulWidget {
-  CustomButton(
-      {super.key,
-      required this.child,
-      required this.onTap,
-      this.width,
-      this.hPadding,
-      this.color});
+  CustomButton({
+    super.key,
+    required this.child,
+    required this.onTap,
+    this.width,
+    this.hPadding,
+    this.vPadding,
+    this.color,
+  });
 
   Widget child;
   final VoidCallback onTap;
   final double? width;
   final double? hPadding;
+  final double? vPadding;
   final Color? color;
 
   @override
@@ -34,7 +37,8 @@ class _CustomButtonState extends State<CustomButton> {
               borderRadius: BorderRadius.circular(50),
             ),
             padding: EdgeInsets.symmetric(
-                vertical: 15, horizontal: widget.hPadding ?? 10)),
+                vertical: widget.vPadding ?? 15,
+                horizontal: widget.hPadding ?? 10)),
         child: widget.child,
       ),
     );
