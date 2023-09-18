@@ -3,9 +3,9 @@ import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/domains/models/category/category.dart';
 
 class CategoryCard extends StatelessWidget {
-  CategoryCard({super.key});
+  const CategoryCard({super.key, required this.category});
 
-  final Category category = Category(name: 'Nouveautés');
+  final Category category;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class CategoryCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 20),
       decoration: BoxDecoration(
         image: const DecorationImage(
-          image: AssetImage('assets/images/women/10.jpg'),
+          image: AssetImage('assets/images/${category.image}'),
           fit: BoxFit.fitWidth,
         ),
         borderRadius: BorderRadius.circular(25),
