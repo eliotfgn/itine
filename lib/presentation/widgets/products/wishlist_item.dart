@@ -51,8 +51,8 @@ class WishlistItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Container(
-              height: 85,
-              width: 85,
+              height: 90,
+              width: 90,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: AppColors.primary,
@@ -65,7 +65,7 @@ class WishlistItem extends StatelessWidget {
               width: 15,
             ),
             SizedBox(
-              height: 85,
+              height: 90,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +83,7 @@ class WishlistItem extends StatelessWidget {
                         ),
                         Text(
                           'Itine France',
-                          style: AppTypography.subtitle2.copyWith(fontSize: 15),
+                          style: AppTypography.subtitle2.copyWith(fontSize: 14),
                         ),
                       ],
                     ),
@@ -100,7 +100,7 @@ class WishlistItem extends StatelessWidget {
             ),
             CustomButton(
               onTap: () {},
-              width: 125,
+              width: 120,
               vPadding: 5,
               color: AppColors.secondary,
               child: const Text(
