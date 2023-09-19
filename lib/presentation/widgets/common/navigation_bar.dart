@@ -65,7 +65,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                   width: index == currentIndex ? displayWidth * .32 : 0,
                   decoration: BoxDecoration(
                     color: index == currentIndex
-                        ? Colors.white.withOpacity(.9)
+                        ? Colors.white
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(50),
                   ),
