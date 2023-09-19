@@ -16,13 +16,13 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
   var currentIndex = 0;
 
   final RootNavigationController rootNavigationController =
-      Get.put(RootNavigationController());
+      Get.find<RootNavigationController>();
 
   @override
   Widget build(BuildContext context) {
     double displayWidth = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.all(displayWidth * .05),
+      margin: EdgeInsets.all(displayWidth * .02),
       height: displayWidth * .155,
       decoration: BoxDecoration(
         color: AppColors.secondary,
@@ -161,8 +161,8 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
 
   List<String> listOfStrings = [
     'Accueil',
-    'Favoris',
     'Panier',
+    'Favoris',
     'Profile',
   ];
 }

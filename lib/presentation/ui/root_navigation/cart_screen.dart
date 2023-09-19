@@ -34,30 +34,28 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            ListView(
-              physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-              children: [
-                const SizedBox(
-                  height: 65,
-                ),
-                Text(
-                  'Mon panier',
-                  style: AppTypography.headline1.copyWith(fontSize: 25),
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                ...products.map((product) => CartItem(product: product))
-              ],
-            ),
-            const CustomBackButton(),
-          ],
-        ),
+    return SafeArea(
+      child: Stack(
+        children: [
+          ListView(
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+            children: [
+              const SizedBox(
+                height: 65,
+              ),
+              Text(
+                'Mon panier',
+                style: AppTypography.headline1.copyWith(fontSize: 25),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              ...products.map((product) => CartItem(product: product))
+            ],
+          ),
+          const CustomBackButton(),
+        ],
       ),
     );
   }
