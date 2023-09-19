@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/utils/helpers.dart';
-import 'package:itine/presentation/ui/root_navigation/root_navigation.dart';
+import 'package:itine/presentation/routes/app_pages.dart';
+import 'package:itine/presentation/routes/app_routes.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -11,9 +12,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      //initialRoute: '/signin',
-      home: RootNavigation(),
-      //getPages: AppPages.pages,
+      getPages: AppPages.pages,
+      initialRoute: AppRoutes.main,
+      //home: RootNavigation(),
       theme: ThemeData(
           fontFamily: 'Poppins',
           primaryColor: AppColors.primary,

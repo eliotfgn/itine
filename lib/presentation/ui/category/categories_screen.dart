@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:itine/presentation/widgets/category/category_card.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
 import 'package:itine/presentation/widgets/common/back_button.dart';
@@ -48,7 +49,11 @@ class CategoriesScreen extends StatelessWidget {
                     .map((category) => CategoryCard(category: category))
               ],
             ),
-            CustomBackButton(),
+            CustomBackButton(
+              onTap: () {
+                Get.back();
+              },
+            ),
           ],
         ),
       ),

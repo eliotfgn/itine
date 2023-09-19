@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/domains/local/mock/products.dart';
+import 'package:itine/presentation/routes/app_routes.dart';
 import 'package:itine/presentation/widgets/category/category_item.dart';
 import 'package:itine/presentation/widgets/category/category_pill.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
@@ -81,18 +82,23 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 25,
               ),
-              const Row(
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Catégories',
                     style: AppTypography.headline2,
                   ),
                   Center(
-                    child: Text(
-                      'Voir tout',
-                      style: AppTypography.subtitle2,
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.categories);
+                      },
+                      child: const Text(
+                        'Voir tout',
+                        style: AppTypography.subtitle2,
+                      ),
                     ),
                   ),
                 ],
