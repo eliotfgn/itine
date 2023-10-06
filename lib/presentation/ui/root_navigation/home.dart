@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
+import 'package:itine/presentation/controllers/request/request_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
 import 'package:itine/presentation/widgets/category/category_item.dart';
 import 'package:itine/presentation/widgets/category/category_pill.dart';
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
   final TextEditingController searchController = TextEditingController();
 
   final ProductsController _productsController = Get.put(ProductsController());
+  final RequestController _requestController = Get.find<RequestController>();
 
   @override
   Widget build(BuildContext context) {
@@ -159,13 +161,17 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Wrap(
-                  spacing: 25,
-                  runSpacing: 15,
-                  children: _productsController.products
-                      .map((product) => ProductCard(product: product))
-                      .toList(),
-                )
+                _requestController.isLoading.isFalse
+                    ? Wrap(
+                        spacing: 25,
+                        runSpacing: 15,
+                        children: _productsController.products
+                            .map((product) => ProductCard(product: product))
+                            .toList(),
+                      )
+                    : const Center(
+                        child: CircularProgressIndicator(),
+                      )
               ],
             ),
           ),
