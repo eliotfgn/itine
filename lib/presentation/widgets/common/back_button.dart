@@ -4,15 +4,22 @@ import 'package:flutter_svg/svg.dart';
 import '../../../core/constants/app_colors.dart';
 
 class CustomBackButton extends StatelessWidget {
-  const CustomBackButton({super.key, this.onTap});
+  const CustomBackButton({
+    super.key,
+    this.onTap,
+    this.left,
+    this.top,
+  });
 
+  final double? top;
+  final double? left;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      left: 25,
-      top: 20,
+      left: left ?? 25,
+      top: top ?? 20,
       child: GestureDetector(
         onTap: onTap,
         child: Container(

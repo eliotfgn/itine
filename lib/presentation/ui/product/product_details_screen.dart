@@ -6,6 +6,8 @@ import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/domains/models/product/product.dart';
 import 'package:itine/presentation/widgets/common/CustomButton.dart';
 
+import '../../widgets/common/back_button.dart';
+
 class ProductDetailsScreen extends StatefulWidget {
   ProductDetailsScreen({super.key});
 
@@ -303,6 +305,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   )
                 ],
               ),
+            ),
+            CustomBackButton(
+              top: 40,
+              onTap: Get.back,
             ),
           ],
         ),
