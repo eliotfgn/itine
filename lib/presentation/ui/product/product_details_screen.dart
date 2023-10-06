@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -27,12 +28,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         child: Stack(
           children: [
             Container(
-              color: AppColors.primary.withOpacity(0.4),
               height: Get.height * 0.6,
               width: Get.width,
-              child: Image.network(
-                product.images[product.cover - 1],
-                fit: BoxFit.cover,
+              decoration: BoxDecoration(
+                color: AppColors.primary.withOpacity(0.4),
+                image: DecorationImage(
+                  image: CachedNetworkImageProvider(
+                    product.images[product.cover - 1],
+                  ),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Positioned(

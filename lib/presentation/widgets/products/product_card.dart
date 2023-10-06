@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,9 +39,12 @@ class _ProductCardState extends State<ProductCard> {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(15),
-                    child: Image.network(
-                      widget.product.images[widget.product.cover - 1],
+                    child: CachedNetworkImage(
+                      imageUrl: widget.product.images[widget.product.cover - 1],
                       fit: BoxFit.cover,
+                      placeholder: (context, url) => const Center(
+                        child: Text('Itine'),
+                      ),
                       alignment: Alignment.topCenter,
                       height: double.infinity,
                       width: double.infinity,
