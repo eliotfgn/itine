@@ -34,7 +34,7 @@ class _ProductCardState extends State<ProductCard> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: Image.asset(
-                    'assets/images/${widget.product.cover}',
+                    widget.product.images[widget.product.cover - 1],
                     fit: BoxFit.cover,
                     alignment: Alignment.topCenter,
                     height: double.infinity,

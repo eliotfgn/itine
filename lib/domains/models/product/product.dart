@@ -20,7 +20,7 @@ class Product {
   final String name;
   final String description;
   final double price;
-  final String cover;
+  final int cover;
   final List<String> categories;
   final List<String> images;
   final List<String> sizes;
