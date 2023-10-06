@@ -6,10 +6,16 @@ import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/domains/models/product/product.dart';
 import 'package:itine/presentation/widgets/common/CustomButton.dart';
 
-class ProductDetailsScreen extends StatelessWidget {
+class ProductDetailsScreen extends StatefulWidget {
   ProductDetailsScreen({super.key});
 
+  @override
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+}
+
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final Product product = Get.arguments;
+  String selectedColor = '';
 
   @override
   Widget build(BuildContext context) {
@@ -208,25 +214,33 @@ class ProductDetailsScreen extends StatelessWidget {
                           Wrap(
                             children: product.colors.map((color) {
                               int c = int.parse('0xff$color');
-                              return Container(
-                                height: 42,
-                                width: 42,
-                                margin: const EdgeInsets.only(right: 15),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                  border: color == '12dc3a'
-                                      ? Border.all(
-                                          color: AppColors.secondary, width: 2)
-                                      : null,
-                                ),
-                                child: Center(
-                                  child: Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color(c),
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedColor = color;
+                                  });
+                                },
+                                child: Container(
+                                  height: 42,
+                                  width: 42,
+                                  margin: const EdgeInsets.only(right: 15),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.white,
+                                    border: color == selectedColor
+                                        ? Border.all(
+                                            color: AppColors.secondary,
+                                            width: 2)
+                                        : null,
+                                  ),
+                                  child: Center(
+                                    child: Container(
+                                      height: 30,
+                                      width: 30,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color(c),
+                                      ),
                                     ),
                                   ),
                                 ),
