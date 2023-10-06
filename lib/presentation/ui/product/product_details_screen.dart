@@ -10,6 +10,7 @@ class ProductDetailsScreen extends StatelessWidget {
   ProductDetailsScreen({super.key});
 
   final Product product = Product(
+    id: 1,
     name: "Robe d'été en lin",
     description:
         'Découvrez notre élégante veste, le choix parfait pour ajouter une touche de style et de chaleur à votre garde-roble. Cette veste allie confort et esthétique avec son design moderne et ses materiaux de haute qualite.',

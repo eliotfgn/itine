@@ -13,7 +13,7 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: Key(product.id ?? ''),
+      key: Key(product.id.toString()),
       direction: DismissDirection.endToStart,
       background: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15),
