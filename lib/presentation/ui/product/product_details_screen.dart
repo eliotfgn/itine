@@ -22,8 +22,8 @@ class ProductDetailsScreen extends StatelessWidget {
               color: AppColors.primary.withOpacity(0.4),
               height: Get.height * 0.6,
               width: Get.width,
-              child: Image.asset(
-                'assets/images/${product.cover}',
+              child: Image.network(
+                product.images[product.cover - 1],
                 fit: BoxFit.cover,
               ),
             ),
@@ -32,7 +32,7 @@ class ProductDetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    height: Get.height * 0.45,
+                    height: Get.height * 0.40,
                     width: Get.width,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
@@ -55,50 +55,52 @@ class ProductDetailsScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    product.name,
-                                    style: AppTypography.headline2.copyWith(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  const Text(
-                                    'Itine France',
-                                    style: AppTypography.subtitle2,
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      RatingBarIndicator(
-                                        itemBuilder: (context, index) =>
-                                            const Icon(
-                                          Icons.star_rounded,
-                                          size: 10,
-                                          color: Color(0xffFCAF23),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      product.name,
+                                      style: AppTypography.headline2.copyWith(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    const Text(
+                                      'Itine France',
+                                      style: AppTypography.subtitle2,
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        RatingBarIndicator(
+                                          itemBuilder: (context, index) =>
+                                              const Icon(
+                                            Icons.star_rounded,
+                                            size: 10,
+                                            color: Color(0xffFCAF23),
+                                          ),
+                                          itemSize: 25,
+                                          rating: 3.6,
+                                          unratedColor: AppColors.secondary
+                                              .withOpacity(0.2),
                                         ),
-                                        itemSize: 25,
-                                        rating: 3.6,
-                                        unratedColor: AppColors.secondary
-                                            .withOpacity(0.2),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      const Text(
-                                        '(56 avis)',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 15),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        const Text(
+                                          '(56 avis)',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
