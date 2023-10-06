@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
 import 'package:itine/presentation/ui/category/categories_screen.dart';
+import 'package:itine/presentation/ui/product/product_details_screen.dart';
 import 'package:itine/presentation/ui/root_navigation/root_navigation.dart';
 
 class AppPages {
@@ -13,5 +14,9 @@ class AppPages {
       name: AppRoutes.categories,
       page: () => CategoriesScreen(),
     ),
+    GetPage(
+      name: AppRoutes.productDetails,
+      page: () => ProductDetailsScreen(),
+    )
   ];
 }

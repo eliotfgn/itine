@@ -9,18 +9,7 @@ import 'package:itine/presentation/widgets/common/CustomButton.dart';
 class ProductDetailsScreen extends StatelessWidget {
   ProductDetailsScreen({super.key});
 
-  final Product product = Product(
-    id: 1,
-    name: "Robe d'été en lin",
-    description:
-        'Découvrez notre élégante veste, le choix parfait pour ajouter une touche de style et de chaleur à votre garde-roble. Cette veste allie confort et esthétique avec son design moderne et ses materiaux de haute qualite.',
-    price: 67.23,
-    cover: 1,
-    categories: ['Nouveautés', 'Populaires', 'Femme'],
-    images: [],
-    sizes: ['M', 'S', 'L', 'XL', 'XXL'],
-    colors: ['F7C600', '12dc3a'],
-  );
+  final Product product = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
