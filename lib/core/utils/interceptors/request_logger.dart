@@ -33,7 +33,7 @@ class Logger extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     log('--------------------------------------------------');
     log('[DIO ERROR] ${err.response?.statusCode.toString()} => PATH: ${err.requestOptions.path}');
     log(err.response?.data['message'] ?? 'An unhandled error occured.');
