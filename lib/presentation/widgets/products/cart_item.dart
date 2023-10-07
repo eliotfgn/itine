@@ -1,19 +1,20 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
-import 'package:itine/domains/models/product/product.dart';
+import 'package:itine/domains/models/cart_item/cart_item.dart';
 
-class CartItem extends StatelessWidget {
-  const CartItem({super.key, required this.product});
+class CartItemCard extends StatelessWidget {
+  const CartItemCard({super.key, required this.item});
 
-  final Product product;
+  final CartItem item;
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: Key(product.id.toString()),
+      key: Key(item.id.toString()),
       direction: DismissDirection.endToStart,
       background: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -56,7 +57,8 @@ class CartItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 color: AppColors.primary,
                 image: DecorationImage(
-                    image: AssetImage("assets/images/${product.cover}"),
+                    image: CachedNetworkImageProvider(
+                        item.product.images[item.product.cover - 1]),
                     fit: BoxFit.cover),
               ),
             ),
@@ -76,7 +78,7 @@ class CartItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          product.name,
+                          item.product.name,
                           style: AppTypography.headline3.copyWith(fontSize: 17),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -89,7 +91,7 @@ class CartItem extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    '${product.price} €',
+                    '${item.product.price} €',
                     style: AppTypography.headline3.copyWith(
                       fontWeight: FontWeight.w700,
                     ),

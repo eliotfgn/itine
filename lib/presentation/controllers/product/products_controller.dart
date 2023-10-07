@@ -6,7 +6,7 @@ import 'package:itine/presentation/controllers/product/cart_controller.dart';
 
 class ProductsController extends GetxController {
   final ProductService _productService = ProductService();
-  final CartController _cartController = CartController();
+  final CartController _cartController = Get.put(CartController());
 
   RxInt quantity = 0.obs;
   RxString selectedColor = ''.obs;

@@ -29,7 +29,7 @@ class _CustomButtonState extends State<CustomButton> {
     return SizedBox(
       width: widget.width ?? double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: widget.onTap,
         style: ElevatedButton.styleFrom(
             elevation: 0,
             backgroundColor: widget.color ?? AppColors.primary,
