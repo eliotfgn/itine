@@ -10,4 +10,8 @@ class CartController extends GetxController {
     index++;
     items.add(item);
   }
+
+  void removeFromCart(int id) {
+    items.removeWhere((element) => element.id == id);
+  }
 }
