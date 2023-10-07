@@ -318,7 +318,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ],
                           ),
                           CustomButton(
-                            onTap: () {},
+                            onTap: () {
+                              _productsController.addToCart(product);
+                            },
                             width: Get.width * 0.55,
                             color: AppColors.secondary,
                             hPadding: 25,
@@ -338,7 +340,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               ),
               CustomBackButton(
                 top: 40,
-                onTap: Get.back,
+                onTap: () {
+                  _productsController.resetSelection();
+                  Get.back();
+                },
               ),
             ],
           ),
