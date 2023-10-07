@@ -14,7 +14,7 @@ class CartItem {
     this.size,
   });
 
-  final int? id;
+  int? id;
   final Product product;
   final int? userId;
   final int quantity;
