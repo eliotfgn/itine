@@ -10,8 +10,8 @@ class RootNavigationController extends GetxController {
 
   List<Widget> screens = [
     HomeScreen(),
-    WishlistScreen(),
     CartScreen(),
+    WishlistScreen(),
     ProfileScreen()
   ];
 }
