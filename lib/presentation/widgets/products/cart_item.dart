@@ -105,27 +105,27 @@ class CartItemCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 color: AppColors.secondary.withOpacity(0.1),
               ),
-              child: const Row(
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.remove_rounded,
                     color: AppColors.secondary,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
-                    '1',
-                    style: TextStyle(
+                    item.quantity.toString(),
+                    style: const TextStyle(
                         color: AppColors.secondary,
                         fontSize: 17,
                         fontWeight: FontWeight.w500),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  Icon(
+                  const Icon(
                     Icons.add_rounded,
                     color: AppColors.secondary,
                   ),
