@@ -5,17 +5,22 @@ import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/domains/models/cart_item/cart_item.dart';
+import 'package:itine/presentation/controllers/product/cart_controller.dart';
 
 class CartItemCard extends StatelessWidget {
-  const CartItemCard({super.key, required this.item});
+  CartItemCard({super.key, required this.item});
 
   final CartItem item;
+  final CartController _cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
       key: Key(item.id.toString()),
       direction: DismissDirection.endToStart,
+      onDismissed: (DismissDirection direction) {
+        _cartController.removeFromCart(item.id ?? 0);
+      },
       background: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         margin: const EdgeInsets.only(bottom: 30),
