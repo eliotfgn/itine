@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Adresse',
+                          'Boutique',
                           style: AppTypography.subtitle2,
                         ),
                         const SizedBox(
