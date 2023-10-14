@@ -11,13 +11,13 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 130,
-      margin: const EdgeInsets.only(bottom: 20),
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/${category.image}'),
           fit: BoxFit.fitWidth,
         ),
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Container(
         height: double.infinity,
@@ -25,7 +25,7 @@ class CategoryCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
         decoration: BoxDecoration(
           color: Colors.black38,
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(15),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
