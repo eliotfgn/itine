@@ -1,24 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:itine/presentation/controllers/product/products_controller.dart';
 
 import '../../../domains/models/category/category.dart';
 import '../category/category_card.dart';
 
-class GenderView extends StatelessWidget {
+class GenderView extends StatefulWidget {
   GenderView({super.key, required this.gender});
 
   final String gender;
 
-  List<Category> categories = [
-    Category(name: 'Nouveautés', image: 'women/11.jpg'),
-    Category(name: 'Femme', image: 'women/10.jpg'),
-    Category(name: 'Homme', image: 'men/8.jpg'),
-    Category(name: 'Robes', image: 'women/9.jpg'),
-    Category(name: 'Bas', image: 'pants/1.jpeg'),
-    Category(name: 'Chemises', image: 't-shirt/1.jpeg'),
-    Category(name: 'T-shirt', image: 'men/2.jpg'),
-    Category(name: 'Chaussures', image: 'shoes/1.jpg'),
-    Category(name: 'Chapeau', image: 'hats/1.png'),
-  ];
+  @override
+  State<GenderView> createState() => _GenderViewState();
+}
+
+class _GenderViewState extends State<GenderView> {
+  final ProductsController _productsController = Get.put(ProductsController());
+  List<Category> categories = [];
+
+  init() async {
+    categories = await _productsController.fetchCategories(widget.gender);
+    print(categories[0].name);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +39,14 @@ class GenderView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
           children: [
-            ...categories.map((category) => CategoryCard(category: category))
+            categories.isNotEmpty
+                ? Column(
+                    children: [
+                      ...categories
+                          .map((category) => CategoryCard(category: category))
+                    ],
+                  )
+                : Text('Aucune donnée disponible')
           ],
         ),
       ),

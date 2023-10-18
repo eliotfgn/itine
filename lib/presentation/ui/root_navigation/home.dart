@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 3,
       child: Scaffold(
         appBar: AppBar(
@@ -77,13 +77,13 @@ class HomeScreen extends StatelessWidget {
         body: TabBarView(
           children: [
             GenderView(
-              gender: 'homme',
+              gender: 'man',
             ),
             GenderView(
-              gender: 'femme',
+              gender: 'woman',
             ),
             GenderView(
-              gender: 'enfant',
+              gender: 'child',
             ),
           ],
         ),

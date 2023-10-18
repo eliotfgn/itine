@@ -17,10 +17,11 @@ class ProductService extends ApiService {
     return products;
   }
 
-  Future<List<Category>> getAllCategories() async {
+  Future<List<Category>> getCategoriesByGender(String gender) async {
     List<Category> categories = [];
 
-    Response response = await client.get(ApiEndpoints.categories);
+    Response response =
+        await client.get('${ApiEndpoints.categories}?gender=$gender');
 
     response.data['data'].forEach((category) {
       categories.add(Category.fromJson(category));
