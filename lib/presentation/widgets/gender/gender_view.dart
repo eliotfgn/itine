@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:itine/core/services/api/products/product_service.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
 import 'package:itine/presentation/controllers/request/request_controller.dart';
+import 'package:itine/presentation/routes/app_routes.dart';
 
 import '../../../domains/models/category/category.dart';
 import '../category/category_card.dart';
@@ -50,8 +51,15 @@ class _GenderViewState extends State<GenderView> {
                     categories.isNotEmpty
                         ? Column(
                             children: [
-                              ...categories.map((category) =>
-                                  CategoryCard(category: category))
+                              ...categories.map(
+                                (category) => GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(AppRoutes.productsByCategory,
+                                        arguments: category);
+                                  },
+                                  child: CategoryCard(category: category),
+                                ),
+                              ),
                             ],
                           )
                         : const Text('Aucune donnée disponible')
