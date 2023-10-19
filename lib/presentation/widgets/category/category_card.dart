@@ -41,7 +41,7 @@ class CategoryCard extends StatelessWidget {
             ),
             const SizedBox(height: 0),
             Text(
-              '123 articles',
+              '${category.count} ${category.count > 1 ? 'articles' : 'article'}',
               style: AppTypography.subtitle1.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
