@@ -17,7 +17,7 @@ class CategoryCard extends StatelessWidget {
           image: NetworkImage(category.image ?? ''),
           fit: BoxFit.fitWidth,
         ),
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(0),
       ),
       child: Container(
         height: double.infinity,
@@ -25,7 +25,7 @@ class CategoryCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
         decoration: BoxDecoration(
           color: Colors.black38,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(0),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
