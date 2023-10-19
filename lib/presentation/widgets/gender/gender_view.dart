@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:itine/core/services/api/products/product_service.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
 
 import '../../../domains/models/category/category.dart';
@@ -8,7 +9,7 @@ import '../category/category_card.dart';
 class GenderView extends StatefulWidget {
   GenderView({super.key, required this.gender});
 
-  final String gender;
+  final Gender gender;
 
   @override
   State<GenderView> createState() => _GenderViewState();

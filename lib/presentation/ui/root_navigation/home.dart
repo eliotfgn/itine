@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
+import 'package:itine/core/services/api/products/product_service.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
 import 'package:itine/presentation/controllers/request/request_controller.dart';
 
@@ -77,13 +78,13 @@ class HomeScreen extends StatelessWidget {
         body: TabBarView(
           children: [
             GenderView(
-              gender: 'man',
+              gender: Gender.man,
             ),
             GenderView(
-              gender: 'woman',
+              gender: Gender.woman,
             ),
             GenderView(
-              gender: 'child',
+              gender: Gender.child,
             ),
           ],
         ),

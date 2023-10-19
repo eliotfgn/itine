@@ -25,8 +25,22 @@ class ProductsController extends GetxController {
     products.value = await _productService.getAll();
   }
 
-  Future<List<Category>> fetchCategories(String gender) async {
+  Future<List<Category>> fetchCategories(Gender gender) async {
     return await _productService.getCategoriesByGender(gender);
+  }
+
+  Future<List<Product>> fetchProductsByGender(Gender gender) async {
+    return await _productService.getProductsByGender(gender);
+  }
+
+  Future<List<Product>> fetchProductsByCategoryAndGender(
+    Gender gender,
+    String category,
+  ) async {
+    return await _productService.getProductsByCategoryAndGender(
+      gender,
+      category,
+    );
   }
 
   addToCart(Product product) {
