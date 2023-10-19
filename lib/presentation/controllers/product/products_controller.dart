@@ -8,18 +8,14 @@ import 'package:itine/presentation/controllers/product/cart_controller.dart';
 class ProductsController extends GetxController {
   final ProductService _productService = ProductService();
   final CartController _cartController = Get.put(CartController());
+  final List<Gender> genders = [Gender.man, Gender.woman, Gender.child];
 
   RxInt quantity = 0.obs;
   RxString selectedColor = ''.obs;
   RxString selectedSize = ''.obs;
   RxList<Product> products = <Product>[].obs;
   RxList<Category> categories = <Category>[].obs;
-
-  @override
-  void onInit() {
-    fetchProducts();
-    super.onInit();
-  }
+  RxInt activeGender = 0.obs;
 
   fetchProducts() async {
     products.value = await _productService.getAll();
@@ -33,12 +29,11 @@ class ProductsController extends GetxController {
     return await _productService.getProductsByGender(gender);
   }
 
-  Future<List<Product>> fetchProductsByCategoryAndGender(
-    Gender gender,
+  Future<void> fetchProductsByCategoryAndGender(
     String category,
   ) async {
-    return await _productService.getProductsByCategoryAndGender(
-      gender,
+    products.value = await _productService.getProductsByCategoryAndGender(
+      genders[activeGender.value],
       category,
     );
   }
@@ -53,6 +48,10 @@ class ProductsController extends GetxController {
 
     _cartController.addToCart(item);
     resetSelection();
+  }
+
+  changeActiveGender(int genderIndex) {
+    activeGender.value = genderIndex;
   }
 
   resetSelection() {

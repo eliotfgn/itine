@@ -66,14 +66,17 @@ class HomeScreen extends StatelessWidget {
               )
             ],
           ),
-          bottom: const TabBar(
+          bottom: TabBar(
               labelColor: Colors.black,
               indicatorColor: Colors.black,
               dividerColor: Colors.black,
               indicatorSize: TabBarIndicatorSize.label,
               enableFeedback: false,
-              labelPadding: EdgeInsets.symmetric(vertical: 5),
-              tabs: [Text('Homme'), Text('Femme'), Text('Enfant')]),
+              labelPadding: const EdgeInsets.symmetric(vertical: 5),
+              onTap: (index) {
+                _productsController.changeActiveGender(index);
+              },
+              tabs: const [Text('Homme'), Text('Femme'), Text('Enfant')]),
         ),
         body: TabBarView(
           children: [

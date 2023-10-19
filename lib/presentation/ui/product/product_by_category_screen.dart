@@ -22,6 +22,12 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen> {
   Category category = Get.arguments;
 
   @override
+  void initState() {
+    _productsController.fetchProductsByCategoryAndGender(category.name);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
