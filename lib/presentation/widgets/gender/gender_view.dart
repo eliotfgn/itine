@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/services/api/products/product_service.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
+import 'package:itine/presentation/controllers/request/request_controller.dart';
 
 import '../../../domains/models/category/category.dart';
 import '../category/category_card.dart';
@@ -17,6 +18,7 @@ class GenderView extends StatefulWidget {
 
 class _GenderViewState extends State<GenderView> {
   final ProductsController _productsController = Get.put(ProductsController());
+  final RequestController _requestController = Get.find<RequestController>();
   List<Category> categories = [];
 
   init() async {
@@ -38,17 +40,23 @@ class _GenderViewState extends State<GenderView> {
       padding: const EdgeInsets.symmetric(vertical: 25),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Column(
-          children: [
-            categories.isNotEmpty
-                ? Column(
-                    children: [
-                      ...categories
-                          .map((category) => CategoryCard(category: category))
-                    ],
-                  )
-                : const Text('Aucune donnée disponible')
-          ],
+        child: Obx(
+          () => _requestController.isLoading.isTrue
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Column(
+                  children: [
+                    categories.isNotEmpty
+                        ? Column(
+                            children: [
+                              ...categories.map((category) =>
+                                  CategoryCard(category: category))
+                            ],
+                          )
+                        : const Text('Aucune donnée disponible')
+                  ],
+                ),
         ),
       ),
     );
