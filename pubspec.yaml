@@ -35,13 +35,6 @@ flutter:
 
   assets:
     - assets/icons/
-    - assets/images/women/
-    - assets/images/men/
-    - assets/images/shoes/
-    - assets/images/t-shirt/
-    - assets/images/pull/
-    - assets/images/pants/
-    - assets/images/hats/
 
   fonts:
     - family: Poppins
