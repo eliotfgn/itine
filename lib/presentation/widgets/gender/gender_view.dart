@@ -37,7 +37,7 @@ class _GenderViewState extends State<GenderView> {
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.symmetric(vertical: 25),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(
           children: [
             categories.isNotEmpty
@@ -47,7 +47,7 @@ class _GenderViewState extends State<GenderView> {
                           .map((category) => CategoryCard(category: category))
                     ],
                   )
-                : Text('Aucune donnée disponible')
+                : const Text('Aucune donnée disponible')
           ],
         ),
       ),
