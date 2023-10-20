@@ -83,6 +83,7 @@ class SignupScreen extends StatelessWidget {
                             style: AppTypography.subtitle1
                                 .copyWith(color: Colors.white),
                           ),
+                          width: Get.width,
                           onTap: () {}),
                     ],
                   ),
