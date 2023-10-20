@@ -5,6 +5,9 @@ import 'package:itine/presentation/controllers/product/cart_controller.dart';
 import 'package:itine/presentation/widgets/common/back_button.dart';
 import 'package:itine/presentation/widgets/products/cart_item.dart';
 
+import '../../../core/constants/app_colors.dart';
+import '../../widgets/common/CustomButton.dart';
+
 class CartScreen extends StatelessWidget {
   CartScreen({super.key});
 
@@ -34,6 +37,40 @@ class CartScreen extends StatelessWidget {
               ],
             ),
             const CustomBackButton(),
+            Positioned(
+              bottom: 0,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                width: Get.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('21 articles'),
+                        Text(
+                          '124.98 €',
+                          style: AppTypography.headline2
+                              .copyWith(fontWeight: FontWeight.w800),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    CustomButton(
+                      onTap: () {},
+                      color: AppColors.secondary,
+                      hPadding: 25,
+                      child: const Row(
+                        children: [
+                          Text('Commander'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

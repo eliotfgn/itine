@@ -27,7 +27,7 @@ class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: widget.width ?? double.infinity,
+      width: widget.width,
       child: ElevatedButton(
         onPressed: widget.onTap,
         style: ElevatedButton.styleFrom(
