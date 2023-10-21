@@ -5,6 +5,9 @@ import 'package:itine/domains/models/user/user_request.dart';
 
 class AuthService extends ApiService {
   register(UserRequest payload) async {
-    Response response = await client.post(ApiEndpoints.register, data: payload);
+    Response response =
+    await client.post(ApiEndpoints.register, data: payload.toJson());
+
+    return response.statusCode == 200;
   }
 }

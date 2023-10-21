@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
+import 'package:itine/presentation/controllers/auth/register_controller.dart';
+import 'package:itine/presentation/controllers/request/request_controller.dart';
 import 'package:itine/presentation/widgets/common/CustomButton.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
+
+  final RequestController _requestController = Get.put(RequestController());
+  final RegisterController _registerController = Get.put(RegisterController());
 
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
@@ -111,7 +116,17 @@ class SignupScreen extends StatelessWidget {
                       ),
                       CustomButton(
                           width: Get.width,
-                          onTap: () {},
+                          onTap: () {
+                            _registerController.register(
+                              lastnameController.text,
+                              firstnameController.text,
+                              emailController.text,
+                              passwordController.text,
+                              phoneNumberController.text,
+                              countryController.text,
+                              townController.text,
+                            );
+                          },
                           child: Text(
                             "S'inscrire",
                             style: AppTypography.subtitle1

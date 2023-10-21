@@ -10,7 +10,7 @@ class UserRequest {
   final String email;
   final String country;
   final String town;
-  final String phoneNumber;
+  final int phoneNumber;
 
   UserRequest(
     this.firstName,
