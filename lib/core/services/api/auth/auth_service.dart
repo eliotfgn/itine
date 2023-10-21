@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:itine/core/services/api/api_endpoints.dart';
 import 'package:itine/core/services/api/base_api_service.dart';
+import 'package:itine/domains/models/user/user.dart';
 import 'package:itine/domains/models/user/user_request.dart';
 
 const String mobileKey =
@@ -28,5 +29,13 @@ class AuthService extends ApiService {
       return response.data['data']['accessToken'];
     }
     return null;
+  }
+
+  Future<User?> getProfile() async {
+    Response response = await client.get(ApiEndpoints.profile);
+
+    User? user = User.fromJson(response.data);
+
+    return user;
   }
 }
