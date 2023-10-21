@@ -10,7 +10,7 @@ import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
 
-  final RequestController _requestController = Get.put(RequestController());
+  final RequestController _requestController = Get.find<RequestController>();
   final RegisterController _registerController = Get.put(RegisterController());
 
   final TextEditingController firstnameController = TextEditingController();

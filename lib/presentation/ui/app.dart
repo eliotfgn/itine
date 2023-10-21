@@ -13,7 +13,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: AppPages.pages,
-      initialRoute: AppRoutes.register,
+      initialRoute: AppRoutes.splash,
       //home: RootNavigation(),
       theme: ThemeData(
           fontFamily: 'Poppins',

@@ -6,6 +6,7 @@ import 'package:itine/presentation/ui/category/categories_screen.dart';
 import 'package:itine/presentation/ui/product/product_by_category_screen.dart';
 import 'package:itine/presentation/ui/product/product_details_screen.dart';
 import 'package:itine/presentation/ui/root_navigation/root_navigation.dart';
+import 'package:itine/presentation/ui/splash/splash_screen.dart';
 
 class AppPages {
   static List<GetPage<dynamic>> pages = [
@@ -32,6 +33,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.productsByCategory,
       page: () => const ProductByCategoryScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.splash,
+      page: () => const SplashScreen(),
     ),
   ];
 }
