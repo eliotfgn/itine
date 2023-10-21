@@ -17,4 +17,5 @@ Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'image': instance.image,
+      'count': instance.count,
     };
