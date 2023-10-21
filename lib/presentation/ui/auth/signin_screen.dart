@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
+import 'package:itine/presentation/controllers/auth/login_controller.dart';
 import 'package:itine/presentation/widgets/common/CustomButton.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
 
 class SigninScreen extends StatelessWidget {
   SigninScreen({super.key});
+
+  final LoginController _loginController = Get.put(LoginController());
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -74,7 +77,10 @@ class SigninScreen extends StatelessWidget {
                       ),
                       CustomButton(
                           width: Get.width,
-                          onTap: () {},
+                          onTap: () {
+                            _loginController.login(emailController.text,
+                                passwordController.text);
+                          },
                           child: Text(
                             'Se connecter',
                             style: AppTypography.subtitle1
