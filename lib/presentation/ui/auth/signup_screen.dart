@@ -8,10 +8,13 @@ import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
 
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController firstnameController = TextEditingController();
+  final TextEditingController lastnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController countryController = TextEditingController();
+  final TextEditingController townController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +24,13 @@ class SignupScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: SizedBox(
-            height: Get.height,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Spacer(),
+                const SizedBox(
+                  height: 50,
+                ),
                 const Text('Inscription', style: AppTypography.headline1),
                 const SizedBox(
                   height: 15,
@@ -43,8 +48,17 @@ class SignupScreen extends StatelessWidget {
                     children: [
                       CustomTextFormField(
                         label: 'Nom',
-                        hint: 'John Doe',
-                        controller: nameController,
+                        hint: 'Doe',
+                        controller: lastnameController,
+                        visible: true,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      CustomTextFormField(
+                        label: 'Prénom',
+                        hint: 'John',
+                        controller: firstnameController,
                         visible: true,
                       ),
                       const SizedBox(
@@ -75,16 +89,34 @@ class SignupScreen extends StatelessWidget {
                         visible: true,
                       ),
                       const SizedBox(
+                        height: 10,
+                      ),
+                      CustomTextFormField(
+                        label: 'Pays',
+                        hint: 'France',
+                        controller: countryController,
+                        visible: true,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      CustomTextFormField(
+                        label: 'Ville',
+                        hint: 'Paris',
+                        controller: townController,
+                        visible: true,
+                      ),
+                      const SizedBox(
                         height: 40,
                       ),
                       CustomButton(
+                          width: Get.width,
+                          onTap: () {},
                           child: Text(
                             "S'inscrire",
                             style: AppTypography.subtitle1
                                 .copyWith(color: Colors.white),
-                          ),
-                          width: Get.width,
-                          onTap: () {}),
+                          )),
                     ],
                   ),
                 ),
@@ -105,7 +137,9 @@ class SignupScreen extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const Spacer(),
+                const SizedBox(
+                  height: 10,
+                ),
               ],
             ),
           ),
