@@ -15,7 +15,7 @@ class AuthService extends ApiService {
     return response.statusCode == 200;
   }
 
-  Future<String?> login(String email, String password) async {
+  Future<(String, User)?> login(String email, String password) async {
     Response response = await client.post(
       ApiEndpoints.login,
       data: {
@@ -26,7 +26,10 @@ class AuthService extends ApiService {
     );
 
     if (response.data['success']) {
-      return response.data['data']['accessToken'];
+      return (
+        response.data['data']['accessToken'] as String,
+        User.fromJson(response.data['user'])
+      );
     }
     return null;
   }
