@@ -2,16 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/presentation/controllers/product/cart_controller.dart';
-import 'package:itine/presentation/widgets/common/back_button.dart';
 import 'package:itine/presentation/widgets/products/cart_item.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../widgets/common/CustomButton.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   CartScreen({super.key});
 
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
   final CartController _cartController = Get.find<CartController>();
+
+  init() async {
+    await _cartController.loadCart();
+  }
+
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +37,6 @@ class CartScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
               children: [
-                const SizedBox(
-                  height: 65,
-                ),
                 Text(
                   'Mon panier',
                   style: AppTypography.headline1.copyWith(fontSize: 25),
@@ -36,7 +47,6 @@ class CartScreen extends StatelessWidget {
                 ..._cartController.items.map((item) => CartItemCard(item: item))
               ],
             ),
-            const CustomBackButton(),
             Positioned(
               bottom: 0,
               child: Container(

@@ -6,5 +6,5 @@ class ApiEndpoints {
   static const products = '/products';
   static const categories = '/categories';
 
-  static const cart = '/cartItems/';
+  static const cart = '/cart-items/';
 }
