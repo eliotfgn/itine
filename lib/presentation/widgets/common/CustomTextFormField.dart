@@ -10,6 +10,7 @@ class CustomTextFormField extends StatefulWidget {
     required this.visible,
     required this.controller,
     this.leading,
+    this.radius,
   });
 
   final String? label;
@@ -17,6 +18,7 @@ class CustomTextFormField extends StatefulWidget {
   bool visible;
   final TextEditingController controller;
   final Widget? leading;
+  final double? radius;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -40,17 +42,17 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         TextFormField(
           decoration: InputDecoration(
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: BorderRadius.circular(widget.radius ?? 50),
               gapPadding: 10,
               borderSide: const BorderSide(color: AppColors.primary, width: 1),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: BorderRadius.circular(widget.radius ?? 50),
               gapPadding: 10,
               borderSide: BorderSide(color: Colors.grey.shade400, width: 1),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: BorderRadius.circular(widget.radius ?? 50),
               gapPadding: 10,
               borderSide: const BorderSide(color: AppColors.primary, width: 2),
             ),

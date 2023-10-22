@@ -41,7 +41,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.checkout,
-      page: () => const CheckoutLayout(),
+      page: () => CheckoutLayout(),
     ),
   ];
 }
