@@ -3,12 +3,14 @@ import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/presentation/controllers/auth/login_controller.dart';
+import 'package:itine/presentation/controllers/request/request_controller.dart';
 import 'package:itine/presentation/widgets/common/CustomButton.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
 
 class SigninScreen extends StatelessWidget {
   SigninScreen({super.key});
 
+  final RequestController requestController = Get.put(RequestController());
   final LoginController _loginController = Get.put(LoginController());
 
   final TextEditingController emailController = TextEditingController();
@@ -78,8 +80,8 @@ class SigninScreen extends StatelessWidget {
                       CustomButton(
                           width: Get.width,
                           onTap: () {
-                            _loginController.login(emailController.text,
-                                passwordController.text);
+                            _loginController.login(
+                                emailController.text, passwordController.text);
                           },
                           child: Text(
                             'Se connecter',
