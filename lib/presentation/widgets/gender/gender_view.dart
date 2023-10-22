@@ -24,7 +24,6 @@ class _GenderViewState extends State<GenderView> {
 
   init() async {
     categories = await _productsController.fetchCategories(widget.gender);
-    print(categories[0].name);
     setState(() {});
   }
 
