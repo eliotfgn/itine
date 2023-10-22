@@ -20,6 +20,8 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final Product product = Get.arguments;
   String selectedColor = '';
+  String size = '';
+  int quantity = 0;
 
   final ProductsController _productsController = Get.find<ProductsController>();
 
@@ -138,11 +140,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                         children: [
                                           GestureDetector(
                                             onTap: () {
-                                              if (_productsController
-                                                      .quantity.value >
-                                                  0) {
-                                                _productsController
-                                                    .quantity.value -= 1;
+                                              if (quantity > 0) {
+                                                setState(() {
+                                                  quantity -= 1;
+                                                });
                                               }
                                             },
                                             child: const Icon(
@@ -154,8 +155,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             width: 10,
                                           ),
                                           Text(
-                                            _productsController.quantity.value
-                                                .toString(),
+                                            quantity.toString(),
                                             style: const TextStyle(
                                                 color: AppColors.secondary,
                                                 fontSize: 17,
@@ -166,8 +166,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           ),
                                           GestureDetector(
                                             onTap: () {
-                                              _productsController
-                                                  .quantity.value += 1;
+                                              setState(() {
+                                                quantity += 1;
+                                              });
                                             },
                                             child: const Icon(
                                               Icons.add_rounded,
@@ -205,24 +206,38 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             Wrap(
                               children: product.sizes
                                   .map(
-                                    (size) => Container(
-                                      height: 50,
-                                      width: 50,
-                                      margin: const EdgeInsets.only(right: 5),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                            color: AppColors.secondary
-                                                .withOpacity(0.2)),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          size,
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w700,
-                                            color: AppColors.secondary
-                                                .withOpacity(0.6),
+                                    (currentSize) => GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          size = currentSize;
+                                        });
+                                      },
+                                      child: Container(
+                                        height: 50,
+                                        width: 50,
+                                        margin: const EdgeInsets.only(right: 5),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: currentSize == size
+                                              ? AppColors.secondary
+                                              : Colors.transparent,
+                                          border: Border.all(
+                                              color: currentSize != size
+                                                  ? AppColors.secondary
+                                                      .withOpacity(0.2)
+                                                  : AppColors.secondary),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            currentSize,
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w700,
+                                              color: currentSize != size
+                                                  ? AppColors.secondary
+                                                      .withOpacity(0.6)
+                                                  : Colors.white,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -319,7 +334,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ),
                           CustomButton(
                             onTap: () {
-                              _productsController.addToCart(product);
+                              _productsController.addToCart(
+                                  product.id, quantity, selectedColor, size);
+                              setState(() {
+                                quantity = 0;
+                                selectedColor = '';
+                                size = '';
+                              });
                             },
                             width: Get.width * 0.55,
                             color: AppColors.secondary,

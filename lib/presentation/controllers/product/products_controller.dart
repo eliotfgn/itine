@@ -1,13 +1,14 @@
 import 'package:get/get.dart';
 import 'package:itine/core/services/api/products/product_service.dart';
-import 'package:itine/domains/models/cart_item/cart_item.dart';
 import 'package:itine/domains/models/category/category.dart';
 import 'package:itine/domains/models/product/product.dart';
+import 'package:itine/presentation/controllers/auth/session_controller.dart';
 import 'package:itine/presentation/controllers/product/cart_controller.dart';
 
 class ProductsController extends GetxController {
   final ProductService _productService = ProductService();
   final CartController _cartController = Get.put(CartController());
+  final SessionController _sessionController = Get.find<SessionController>();
   final List<Gender> genders = [Gender.man, Gender.woman, Gender.child];
 
   RxInt quantity = 0.obs;
@@ -38,15 +39,15 @@ class ProductsController extends GetxController {
     );
   }
 
-  addToCart(Product product) {
-    CartItem item = CartItem(
-      product: product,
-      quantity: quantity.value,
-      color: selectedColor.value,
-      size: selectedSize.value,
+  addToCart(productId, quantity, color, size) {
+    int userId = _sessionController.user.value!.id;
+    _cartController.addToCart(
+      userId,
+      productId,
+      quantity,
+      color,
+      size,
     );
-
-    _cartController.addToCart(item);
     resetSelection();
   }
 
