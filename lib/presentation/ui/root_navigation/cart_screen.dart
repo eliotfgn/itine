@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/presentation/controllers/product/cart_controller.dart';
+import 'package:itine/presentation/routes/app_routes.dart';
 import 'package:itine/presentation/widgets/products/cart_item.dart';
 
 import '../../../core/constants/app_colors.dart';
@@ -69,7 +70,9 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                     const Spacer(),
                     CustomButton(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(AppRoutes.checkout);
+                      },
                       color: AppColors.secondary,
                       hPadding: 25,
                       child: const Row(

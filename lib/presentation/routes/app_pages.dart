@@ -3,6 +3,7 @@ import 'package:itine/presentation/routes/app_routes.dart';
 import 'package:itine/presentation/ui/auth/signin_screen.dart';
 import 'package:itine/presentation/ui/auth/signup_screen.dart';
 import 'package:itine/presentation/ui/category/categories_screen.dart';
+import 'package:itine/presentation/ui/checkout/checkout_layout.dart';
 import 'package:itine/presentation/ui/product/product_by_category_screen.dart';
 import 'package:itine/presentation/ui/product/product_details_screen.dart';
 import 'package:itine/presentation/ui/root_navigation/root_navigation.dart';
@@ -37,6 +38,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.splash,
       page: () => const SplashScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.checkout,
+      page: () => const CheckoutLayout(),
     ),
   ];
 }
