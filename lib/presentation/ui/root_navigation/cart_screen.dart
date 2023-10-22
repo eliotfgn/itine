@@ -58,9 +58,10 @@ class _CartScreenState extends State<CartScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('21 articles'),
                         Text(
-                          '124.98 €',
+                            '${_cartController.totalArticles.toString()} ${_cartController.totalArticles > 1 ? 'articles' : 'article'}'),
+                        Text(
+                          '${_cartController.total.toString()} €',
                           style: AppTypography.headline2
                               .copyWith(fontWeight: FontWeight.w800),
                         ),

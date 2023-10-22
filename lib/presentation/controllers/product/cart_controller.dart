@@ -7,13 +7,19 @@ class CartController extends GetxController {
   final CartService _cartService = CartService();
   final SessionController _sessionController = Get.find<SessionController>();
 
-  RxInt index = 0.obs;
+  RxDouble total = .0.obs;
+  RxInt totalArticles = 0.obs;
   RxList<CartItem> items = <CartItem>[].obs;
 
   Future<void> loadCart() async {
     int userId = _sessionController.user.value!.id;
 
     items.value = await _cartService.getItems(userId);
+
+    for (var item in items) {
+      total.value += (item.product.price * item.quantity);
+    }
+    totalArticles.value = items.length;
   }
 
   void addToCart(userId, productId, quantity, color, size) async {
