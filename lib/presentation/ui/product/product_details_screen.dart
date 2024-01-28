@@ -11,7 +11,7 @@ import 'package:itine/presentation/widgets/common/CustomButton.dart';
 import '../../widgets/common/back_button.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  ProductDetailsScreen({super.key});
+  const ProductDetailsScreen({super.key});
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -255,7 +255,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ),
                           Wrap(
                             children: product.colors.map((color) {
-                              int c = int.parse('0xff$color');
+                              int c = int.parse(
+                                  '0xff${color.contains('#') ? color.substring(
+                                      1,
+                                    ) : color}');
                               return GestureDetector(
                                 onTap: () {
                                   setState(() {

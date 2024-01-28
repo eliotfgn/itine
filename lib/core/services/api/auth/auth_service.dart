@@ -24,7 +24,6 @@ class AuthService extends ApiService {
       },
       options: Options(headers: {'mobile-api-key': mobileKey}),
     );
-
     if (response.data['success']) {
       print(response.data['data']);
       return (
