@@ -9,4 +9,7 @@ class AppRoutes {
   static const productDetails = '/product/details';
   static const productsByCategory = '/products/category';
   static const checkout = '/checkout';
+  static const splashScreen = '/splash';
+  static const addressSearch = '/addressSearch';
+  static const mapPage = '/mapPage';
 }
