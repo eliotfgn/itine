@@ -5,7 +5,7 @@ import 'package:itine/domains/models/user/user.dart';
 import 'package:itine/domains/models/user/user_request.dart';
 
 const String mobileKey =
-    'mhXMkMi1zV0Uo1DdQ0K8CeTLuPvVawNPPGTJpjxbLhkqJVpyKqOV258e2TP/4/S';
+    'mhXMkMi1zV0Uo1DdQ0K8CeTLuPvVawNPPGTJpjxbLhkqJVpyKqOV258e2TP/4/Sh';
 
 class AuthService extends ApiService {
   register(UserRequest payload) async {
@@ -24,11 +24,11 @@ class AuthService extends ApiService {
       },
       options: Options(headers: {'mobile-api-key': mobileKey}),
     );
-
     if (response.data['success']) {
+      print(response.data['data']);
       return (
         response.data['data']['accessToken'] as String,
-        User.fromJson(response.data['user'])
+        User.fromJson(response.data['data']['user'])
       );
     }
     return null;

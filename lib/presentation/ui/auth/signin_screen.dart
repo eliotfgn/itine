@@ -4,6 +4,7 @@ import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/presentation/controllers/auth/login_controller.dart';
 import 'package:itine/presentation/controllers/request/request_controller.dart';
+import 'package:itine/presentation/routes/app_routes.dart';
 import 'package:itine/presentation/widgets/common/CustomButton.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
 
@@ -94,19 +95,25 @@ class SigninScreen extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
-                RichText(
-                  text: TextSpan(
-                    text: "Vous n'avez pas encore de compte? ",
-                    style: AppTypography.subtitle2
-                        .copyWith(color: Colors.grey.shade800),
-                    children: [
-                      TextSpan(
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(AppRoutes.register);
+                  },
+                  child: RichText(
+                    text: TextSpan(
+                      text: "Vous n'avez pas encore de compte? ",
+                      style: AppTypography.subtitle2
+                          .copyWith(color: Colors.grey.shade800),
+                      children: [
+                        TextSpan(
                           text: "Inscrivez-vous",
                           style: AppTypography.subtitle2
-                              .copyWith(color: AppColors.primary)),
-                    ],
+                              .copyWith(color: AppColors.primary),
+                        ),
+                      ],
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
                 const Spacer(),
               ],

@@ -7,7 +7,9 @@ import 'package:itine/presentation/ui/checkout/checkout_layout.dart';
 import 'package:itine/presentation/ui/product/product_by_category_screen.dart';
 import 'package:itine/presentation/ui/product/product_details_screen.dart';
 import 'package:itine/presentation/ui/root_navigation/root_navigation.dart';
-import 'package:itine/presentation/ui/splash/splash_screen.dart';
+import 'package:itine/presentation/ui/select_location/address_search_page.dart';
+import 'package:itine/presentation/ui/select_location/map_page.dart';
+import 'package:itine/presentation/ui/splash/new_splash_screen.dart';
 
 class AppPages {
   static List<GetPage<dynamic>> pages = [
@@ -35,13 +37,21 @@ class AppPages {
       name: AppRoutes.productsByCategory,
       page: () => const ProductByCategoryScreen(),
     ),
+    // GetPage(
+    //   name: AppRoutes.splash,
+    //   page: () => const SplashScreen(),
+    // ),
+    GetPage(
+      name: AppRoutes.checkout,
+      page: () => CheckoutLayout(),
+    ),
     GetPage(
       name: AppRoutes.splash,
       page: () => const SplashScreen(),
     ),
     GetPage(
-      name: AppRoutes.checkout,
-      page: () => CheckoutLayout(),
+      name: AppRoutes.addressSearch,
+      page: () => const AddressSearchPage(),
     ),
   ];
 }

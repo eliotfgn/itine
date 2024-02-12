@@ -10,7 +10,7 @@ class User {
   final String email;
   final String country;
   final String town;
-  final int phoneNumber;
+  final String phoneNumber;
 
   User({
     required this.id,
