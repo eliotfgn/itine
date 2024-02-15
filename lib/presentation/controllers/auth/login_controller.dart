@@ -8,7 +8,7 @@ import '../../../domains/models/user/user.dart';
 
 class LoginController extends GetxController {
   final AuthService _authService = AuthService();
-  final SessionController _sessionController = Get.put(SessionController());
+  final SessionController _sessionController = Get.find<SessionController>();
   final SessionStorageService _sessionStorageService = SessionStorageService();
 
   login(String email, String password) async {

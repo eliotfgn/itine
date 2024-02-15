@@ -17,6 +17,18 @@ class SessionStorageService {
     await prefs.setString(Keys.token, token);
   }
 
+  Future<void> save(String key, String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    await prefs.setString(key, value);
+  }
+
+  Future<String?> get(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    return prefs.getString(key);
+  }
+
   Future<String?> getToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -39,9 +51,18 @@ class SessionStorageService {
   Future<bool> isConnectedUser() async {
     return (await getConnectedUser()) != null;
   }
+
+  Future<bool> isFirstAppLoad() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String? firstTime = prefs.getString(Keys.firstTime);
+
+    return firstTime == null;
+  }
 }
 
 class Keys {
   static const String userInfos = 'userInfos';
   static const String token = 'token';
+  static const String firstTime = 'firstTime';
 }

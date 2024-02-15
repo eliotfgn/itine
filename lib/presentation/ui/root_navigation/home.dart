@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
   final TextEditingController searchController = TextEditingController();
 
   final ProductsController _productsController = Get.put(ProductsController());
-  final RequestController _requestController = Get.find<RequestController>();
+  final RequestController _requestController = Get.put(RequestController());
 
   @override
   Widget build(BuildContext context) {

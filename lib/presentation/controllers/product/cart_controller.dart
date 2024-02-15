@@ -5,7 +5,7 @@ import 'package:itine/presentation/controllers/auth/session_controller.dart';
 
 class CartController extends GetxController {
   final CartService _cartService = CartService();
-  final SessionController _sessionController = Get.find<SessionController>();
+  final SessionController _sessionController = Get.put(SessionController());
 
   RxDouble total = .0.obs;
   RxInt totalArticles = 0.obs;

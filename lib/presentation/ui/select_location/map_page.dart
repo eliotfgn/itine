@@ -3,15 +3,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:itine/core/constants/app_colors.dart';
+import 'package:itine/core/services/sesion_storage_service.dart';
+import 'package:itine/presentation/controllers/request/request_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../controllers/auth/session_controller.dart';
 // import 'package:provider/provider.dart';
 // import '../../../UseridProvider.dart';
 
 class MapPage extends StatelessWidget {
   final String selectedLocation; // Lieu sélectionné depuis la recherche
+  final SessionController _sessionController = Get.put(SessionController());
+  final RequestController _requestController = Get.put(RequestController());
+  final SessionStorageService storageService = SessionStorageService();
 
   final double latitude; // Latitude du lieu sélectionné
   final double longitude; // Longitude du lieu sélectionné
@@ -252,7 +259,7 @@ class MapPage extends StatelessWidget {
                                 ),
                                 SizedBox(height: 16.0),
                                 ElevatedButton(
-                                  onPressed: () {
+                                  onPressed: () async {
                                     /*var userProvider = Provider.of<UserProvider>(context, listen: false);
                                 var user_id = userProvider.user_id;
                                 print(userProvider);
@@ -263,7 +270,9 @@ class MapPage extends StatelessWidget {
                                     Navigator.pushNamed(context, HomeScreen.routeName);
                                 }
                                 else{*/
-                                    Get.toNamed(AppRoutes.login);
+                                    await storageService.save(
+                                        Keys.firstTime, 'true');
+                                    Get.toNamed(AppRoutes.main);
                                     /*}*/
                                   },
                                   style: ElevatedButton.styleFrom(
