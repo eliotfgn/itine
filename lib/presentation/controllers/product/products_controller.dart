@@ -40,7 +40,8 @@ class ProductsController extends GetxController {
   }
 
   addToCart(productId, quantity, color, size) {
-    int userId = _sessionController.user.value!.id;
+    // Using static value just for testing and bcz we need to refactor all the auth flow
+    int userId = 1; // _sessionController.user.value!.id;
     _cartController.addToCart(
       userId,
       productId,

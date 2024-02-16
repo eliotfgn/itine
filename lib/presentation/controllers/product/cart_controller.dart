@@ -12,7 +12,7 @@ class CartController extends GetxController {
   RxList<CartItem> items = <CartItem>[].obs;
 
   Future<void> loadCart() async {
-    int userId = _sessionController.user.value!.id;
+    int userId = 1; // _sessionController.user.value!.id;
 
     items.value = await _cartService.getItems(userId);
 
