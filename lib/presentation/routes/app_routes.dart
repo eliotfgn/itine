@@ -7,6 +7,7 @@ class AppRoutes {
   static const main = '/main';
   static const categories = '/categories';
   static const productDetails = '/product/details';
+  static const subCategories = '/sub-categories';
   static const productsByCategory = '/products/category';
   static const checkout = '/checkout';
   static const splashScreen = '/splash';

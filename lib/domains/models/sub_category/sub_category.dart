@@ -9,7 +9,7 @@ class SubCategory {
 
   final int id;
   final String name;
-  final int categoryName;
+  final String categoryName;
 
   factory SubCategory.fromJson(Map<String, dynamic> json) =>
       _$SubCategoryFromJson(json);
