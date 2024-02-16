@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:itine/presentation/controllers/auth/session_controller.dart';
 import 'package:itine/presentation/controllers/navigation/root_navigation_controller.dart';
 import 'package:itine/presentation/widgets/common/navigation_bar.dart';
 
@@ -8,6 +9,7 @@ class RootNavigation extends StatelessWidget {
 
   final RootNavigationController navigationController =
       Get.put(RootNavigationController());
+  final SessionController sessionController = Get.put(SessionController());
 
   @override
   Widget build(BuildContext context) {

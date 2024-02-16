@@ -21,10 +21,10 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen> {
   final ProductsController _productsController = Get.find<ProductsController>();
   final TextEditingController searchController = TextEditingController();
 
-  Category category = Get.arguments;
+  String category = Get.arguments;
 
   init() async {
-    await _productsController.fetchProductsByCategoryAndGender(category.name);
+    await _productsController.fetchProductsByCategoryAndGender(category);
   }
 
   @override

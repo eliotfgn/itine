@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/services/api/products/product_service.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
+import 'package:itine/presentation/controllers/product/sub_category_controller.dart';
 import 'package:itine/presentation/controllers/request/request_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
 
@@ -19,7 +20,9 @@ class GenderView extends StatefulWidget {
 
 class _GenderViewState extends State<GenderView> {
   final ProductsController _productsController = Get.put(ProductsController());
-  final RequestController _requestController = Get.find<RequestController>();
+  final RequestController _requestController = Get.put(RequestController());
+  final SubCategoryController _subCategoryController =
+      Get.put(SubCategoryController());
   List<Category> categories = [];
 
   init() async {
@@ -53,8 +56,9 @@ class _GenderViewState extends State<GenderView> {
                               ...categories.map(
                                 (category) => GestureDetector(
                                   onTap: () {
-                                    Get.toNamed(AppRoutes.productsByCategory,
-                                        arguments: category);
+                                    _subCategoryController
+                                        .activeCategory.value = category.name;
+                                    Get.toNamed(AppRoutes.subCategories);
                                   },
                                   child: CategoryCard(category: category),
                                 ),

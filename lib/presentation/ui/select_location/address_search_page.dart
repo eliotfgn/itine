@@ -199,7 +199,7 @@ class _AddressSearchPageState extends State<AddressSearchPage> {
                           'Erreur lors de la récupération de la localisation : $error');
                     });
                   },
-                  child: Padding(
+                  child: const Padding(
                     padding: EdgeInsets.only(
                         top: 8.0, bottom: 8.0), // Marges supplémentaires
                     child: Row(
@@ -218,22 +218,22 @@ class _AddressSearchPageState extends State<AddressSearchPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10.0),
+                const SizedBox(height: 10.0),
                 if (valid_address_found == false)
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 18),
                     child: Text('Entrer un numéro de rue',
                         style:
                             TextStyle(fontSize: 16, color: AppColors.primary)),
                   ),
 
-                SizedBox(height: 10.0),
+                const SizedBox(height: 10.0),
 
                 Expanded(
                   child: ListView.separated(
                     itemCount: searchResults.length,
                     separatorBuilder: (BuildContext context, int index) {
-                      return Divider(); // Ajoute un trait de séparation entre les éléments
+                      return const Divider(); // Ajoute un trait de séparation entre les éléments
                     },
                     itemBuilder: (context, index) {
                       return ListTile(
@@ -274,7 +274,7 @@ class _AddressSearchPageState extends State<AddressSearchPage> {
                                   if (value is String) {
                                     return double.parse(value);
                                   } else {
-                                    throw FormatException(
+                                    throw const FormatException(
                                         'Invalid value in boundingBox');
                                   }
                                 }).toList();
