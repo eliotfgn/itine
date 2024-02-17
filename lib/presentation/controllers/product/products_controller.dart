@@ -11,7 +11,7 @@ class ProductsController extends GetxController {
   final SessionController _sessionController = Get.find<SessionController>();
   final List<Gender> genders = [Gender.man, Gender.woman, Gender.child];
 
-  RxInt quantity = 0.obs;
+  RxInt quantity = 1.obs;
   RxString selectedColor = ''.obs;
   RxString selectedSize = ''.obs;
   RxList<Product> products = <Product>[].obs;

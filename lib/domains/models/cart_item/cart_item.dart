@@ -6,7 +6,7 @@ part 'cart_item.g.dart';
 @JsonSerializable()
 class CartItem {
   CartItem({
-    this.id,
+    required this.id,
     required this.product,
     this.userId,
     required this.quantity,
@@ -14,7 +14,7 @@ class CartItem {
     this.size,
   });
 
-  int? id;
+  int id;
   final Product product;
   final int? userId;
   final int quantity;

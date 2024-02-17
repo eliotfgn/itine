@@ -322,7 +322,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Prix total'),
+                            const Text('Prix total'),
                             Text(
                               '${product.price} €',
                               style: AppTypography.headline2
@@ -335,7 +335,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             _productsController.addToCart(
                                 product.id, quantity, selectedColor, size);
                             setState(() {
-                              quantity = 0;
+                              quantity = 1;
                               selectedColor = '';
                               size = '';
                             });
@@ -349,7 +349,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 Icons.shopping_bag_outlined,
                                 color: Colors.white,
                               ),
-                              const Spacer(),
+                              Spacer(),
                               Text(
                                 'Ajouter au panier',
                                 style: TextStyle(
@@ -365,11 +365,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 ],
               ),
             ),
-            CustomBackButton(
-              top: 40,
-              onTap: () {
-                Get.back();
-              },
+            Positioned(
+              top: 30,
+              left: 20,
+              child: CustomBackButton(
+                top: 40,
+                onTap: () {
+                  Get.back();
+                },
+              ),
             ),
           ],
         ),

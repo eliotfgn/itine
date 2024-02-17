@@ -29,4 +29,10 @@ class CartService extends ApiService {
 
     return items;
   }
+
+  Future<bool> delete(int id) async {
+    Response response = await client.delete('${ApiEndpoints.cart}$id');
+
+    return response.data['success'];
+  }
 }

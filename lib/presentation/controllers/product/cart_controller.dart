@@ -27,7 +27,14 @@ class CartController extends GetxController {
     await _cartService.addToCart(userId, productId, quantity, color, size);
   }
 
-  void removeFromCart(int id) {
-    items.removeWhere((element) => element.id == id);
+  Future<bool> removeFromCart(CartItem item) async {
+    bool success = await _cartService.delete(item.id);
+    if (success == true) {
+      items.removeWhere((element) => element.id == item.id);
+      total.value -= (item.product.price * item.quantity);
+      totalArticles.value -= 1;
+    }
+
+    return success;
   }
 }

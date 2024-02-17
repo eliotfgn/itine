@@ -1,7 +1,7 @@
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/services/sesion_storage_service.dart';
+import 'package:itine/presentation/controllers/auth/session_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
-import 'package:itine/presentation/ui/select_location/address_search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,14 +26,16 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   SessionStorageService storageService = SessionStorageService();
+  final SessionController _sessionController = Get.put(SessionController());
   bool loading = true;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     checkIsFirstAppLoad();
-    loading = false;
+    setState(() {
+      loading = false;
+    });
   }
 
   @override

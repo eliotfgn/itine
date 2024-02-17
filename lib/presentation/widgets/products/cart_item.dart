@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -18,9 +19,12 @@ class CartItemCard extends StatelessWidget {
     return Dismissible(
       key: Key(item.id.toString()),
       direction: DismissDirection.endToStart,
-      onDismissed: (DismissDirection direction) {
-        _cartController.removeFromCart(item.id ?? 0);
+      confirmDismiss: (DismissDirection direction) async {
+        return await _cartController.removeFromCart(item);
       },
+      dragStartBehavior: DragStartBehavior.start,
+      behavior: HitTestBehavior.deferToChild,
+      dismissThresholds: const {DismissDirection.horizontal: 0.9},
       background: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         margin: const EdgeInsets.only(bottom: 30),

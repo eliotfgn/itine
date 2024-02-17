@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/presentation/controllers/product/cart_controller.dart';
@@ -45,7 +46,27 @@ class _CartScreenState extends State<CartScreen> {
                 const SizedBox(
                   height: 25,
                 ),
-                ..._cartController.items.map((item) => CartItemCard(item: item))
+                _cartController.items.isNotEmpty == true
+                    ? Column(
+                        children: _cartController.items
+                            .map((item) => CartItemCard(item: item))
+                            .toList(),
+                      )
+                    : Column(
+                        children: [
+                          SizedBox(
+                            height: Get.height * 0.6,
+                            width: Get.width * 0.8,
+                            child: SvgPicture.asset(
+                                'assets/images/empty_cart.svg'),
+                          ),
+                          Text(
+                            'Votre panier est vide.',
+                            style: AppTypography.headline3
+                                .copyWith(color: AppColors.primary),
+                          ),
+                        ],
+                      ),
               ],
             ),
             Positioned(
