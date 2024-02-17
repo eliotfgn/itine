@@ -8,7 +8,6 @@ import 'package:itine/presentation/ui/product/product_by_category_screen.dart';
 import 'package:itine/presentation/ui/product/product_details_screen.dart';
 import 'package:itine/presentation/ui/root_navigation/root_navigation.dart';
 import 'package:itine/presentation/ui/select_location/address_search_page.dart';
-import 'package:itine/presentation/ui/select_location/map_page.dart';
 import 'package:itine/presentation/ui/splash/new_splash_screen.dart';
 import 'package:itine/presentation/ui/sub_category/sub_category_screen.dart';
 

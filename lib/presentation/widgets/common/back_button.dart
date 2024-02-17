@@ -17,24 +17,20 @@ class CustomBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      left: left ?? 25,
-      top: top ?? 20,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          height: 50,
-          width: 50,
-          decoration: BoxDecoration(
-            color: AppColors.secondary,
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Center(
-            child: SvgPicture.asset(
-              'assets/icons/angle-left-solid.svg',
-              width: 16,
-              color: Colors.white,
-            ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 45,
+        width: 45,
+        decoration: BoxDecoration(
+          color: AppColors.secondary,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Center(
+          child: SvgPicture.asset(
+            'assets/icons/angle-left-solid.svg',
+            width: 16,
+            color: Colors.white,
           ),
         ),
       ),

@@ -31,14 +31,16 @@ class _CustomButtonState extends State<CustomButton> {
       child: ElevatedButton(
         onPressed: widget.onTap,
         style: ElevatedButton.styleFrom(
-            elevation: 0,
-            backgroundColor: widget.color ?? AppColors.primary,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50),
-            ),
-            padding: EdgeInsets.symmetric(
-                vertical: widget.vPadding ?? 15,
-                horizontal: widget.hPadding ?? 10)),
+          elevation: 0,
+          backgroundColor: widget.color ?? AppColors.primary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50),
+          ),
+          padding: EdgeInsets.symmetric(
+              vertical: widget.vPadding ?? 15,
+              horizontal: widget.hPadding ?? 10),
+          foregroundColor: Colors.white,
+        ),
         child: widget.child,
       ),
     );

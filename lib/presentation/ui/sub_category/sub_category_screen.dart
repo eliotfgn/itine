@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/presentation/controllers/product/sub_category_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
+import 'package:itine/presentation/widgets/common/custom_app_bar.dart';
 
 import '../../controllers/request/request_controller.dart';
 import '../../widgets/common/back_button.dart';
@@ -99,11 +101,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                             ],
                     ),
             ),
-            CustomBackButton(
-              onTap: () {
-                Get.back();
-              },
-            ),
+            const CustomAppBar(title: 'Chaussures')
           ],
         ),
       ),

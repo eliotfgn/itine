@@ -345,9 +345,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           hPadding: 25,
                           child: const Row(
                             children: [
-                              Icon(Icons.shopping_bag_outlined),
+                              Icon(
+                                Icons.shopping_bag_outlined,
+                                color: Colors.white,
+                              ),
                               const Spacer(),
-                              Text('Ajouter au panier'),
+                              Text(
+                                'Ajouter au panier',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
                             ],
                           ),
                         ),

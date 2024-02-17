@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:itine/domains/models/category/category.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
 import 'package:itine/presentation/controllers/request/request_controller.dart';
+import 'package:itine/presentation/widgets/common/custom_app_bar.dart';
 import 'package:itine/presentation/widgets/products/product_card.dart';
 
 import '../../widgets/common/CustomTextFormField.dart';
@@ -74,11 +75,7 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen> {
                 ],
               ),
             ),
-            CustomBackButton(
-              onTap: () {
-                Get.back();
-              },
-            ),
+            const CustomAppBar(title: 'Sneakers')
           ],
         ),
       ),
