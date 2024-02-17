@@ -1,11 +1,9 @@
 import 'package:get/get.dart';
 import 'package:itine/core/services/api/products/cart_service.dart';
 import 'package:itine/domains/models/cart_item/cart_item.dart';
-import 'package:itine/presentation/controllers/auth/session_controller.dart';
 
 class CartController extends GetxController {
   final CartService _cartService = CartService();
-  final SessionController _sessionController = Get.put(SessionController());
 
   RxDouble total = .0.obs;
   RxInt totalArticles = 0.obs;
@@ -16,9 +14,12 @@ class CartController extends GetxController {
 
     items.value = await _cartService.getItems(userId);
 
+    double count = 0;
     for (var item in items) {
-      total.value += (item.product.price * item.quantity);
+      count += (item.product.price * item.quantity);
     }
+
+    total.value = count;
     totalArticles.value = items.length;
   }
 
