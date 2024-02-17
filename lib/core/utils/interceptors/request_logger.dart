@@ -16,7 +16,7 @@ class Logger extends Interceptor {
     log('[REQUEST AUTHORIZATION]: ${options.headers['Authorization']}');
     log('--------------------------------------------------');
 
-    _requestController.isLoading.toggle();
+    _requestController.isLoading.value = true;
 
     super.onRequest(options, handler);
   }
@@ -27,7 +27,7 @@ class Logger extends Interceptor {
     log('[DIO RESPONSE] ${response.statusCode} => PATH: ${response.requestOptions.path}');
     log('--------------------------------------------------');
 
-    _requestController.isLoading.toggle();
+    _requestController.isLoading.value = false;
 
     super.onResponse(response, handler);
   }
@@ -47,7 +47,7 @@ class Logger extends Interceptor {
       ),
     );
 
-    _requestController.isLoading.toggle();
+    _requestController.isLoading.value = false;
 
     log('--------------------------------------------------');
 

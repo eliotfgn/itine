@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/presentation/controllers/product/sub_category_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
@@ -39,7 +41,11 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
           children: [
             Obx(
               () => _requestController.isLoading.value
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const Center(
+                      child: SpinKitWave(
+                        color: AppColors.primary,
+                      ),
+                    )
                   : ListView(
                       physics: const BouncingScrollPhysics(),
                       padding: const EdgeInsets.symmetric(

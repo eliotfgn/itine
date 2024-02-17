@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
+import 'package:itine/presentation/controllers/request/request_controller.dart';
 
 class CustomButton extends StatefulWidget {
   CustomButton({
@@ -24,6 +27,8 @@ class CustomButton extends StatefulWidget {
 }
 
 class _CustomButtonState extends State<CustomButton> {
+  final RequestController _requestController = Get.find<RequestController>();
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -41,7 +46,14 @@ class _CustomButtonState extends State<CustomButton> {
               horizontal: widget.hPadding ?? 10),
           foregroundColor: Colors.white,
         ),
-        child: widget.child,
+        child: _requestController.isLoading.isTrue == true
+            ? const Center(
+                child: SpinKitWave(
+                  color: Colors.white,
+                  size: 20,
+                ),
+              )
+            : widget.child,
       ),
     );
   }

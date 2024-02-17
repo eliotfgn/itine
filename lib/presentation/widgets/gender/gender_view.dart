@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/services/api/products/product_service.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
 import 'package:itine/presentation/controllers/product/sub_category_controller.dart';
@@ -45,8 +47,14 @@ class _GenderViewState extends State<GenderView> {
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Obx(
           () => _requestController.isLoading.isTrue
-              ? const Center(
-                  child: CircularProgressIndicator(),
+              ? SizedBox(
+                  height: Get.height - (Get.height * 0.3),
+                  width: double.infinity,
+                  child: const Center(
+                    child: SpinKitWave(
+                      color: AppColors.primary,
+                    ),
+                  ),
                 )
               : Column(
                   children: [

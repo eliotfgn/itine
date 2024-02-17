@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/domains/models/category/category.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
 import 'package:itine/presentation/controllers/request/request_controller.dart';
@@ -60,7 +62,9 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen> {
                   ),
                   _requestController.isLoading.isTrue
                       ? const Center(
-                          child: CircularProgressIndicator(),
+                          child: SpinKitWave(
+                            color: AppColors.primary,
+                          ),
                         )
                       : Wrap(
                           spacing: 10,

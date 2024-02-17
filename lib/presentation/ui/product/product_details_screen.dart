@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/domains/models/product/product.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
+import 'package:itine/presentation/controllers/request/request_controller.dart';
 import 'package:itine/presentation/widgets/common/CustomButton.dart';
 
 import '../../widgets/common/back_button.dart';
@@ -23,7 +25,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   String size = '';
   int quantity = 1;
 
+  @override
+  void initState() {
+    setState(() {
+      selectedColor = product.colors[0];
+      size = product.sizes[0];
+    });
+
+    super.initState();
+  }
+
   final ProductsController _productsController = Get.find<ProductsController>();
+  final RequestController _requestController = Get.find<RequestController>();
 
   @override
   Widget build(BuildContext context) {
@@ -285,6 +298,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: Color(c),
+                                        border:
+                                            color.toLowerCase().contains('fff')
+                                                ? Border.all(
+                                                    color: AppColors.secondary
+                                                        .withOpacity(0.3),
+                                                  )
+                                                : null,
                                       ),
                                     ),
                                   ),
@@ -336,28 +356,26 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 product.id, quantity, selectedColor, size);
                             setState(() {
                               quantity = 1;
-                              selectedColor = '';
-                              size = '';
                             });
                           },
                           width: Get.width * 0.55,
                           color: AppColors.secondary,
-                          hPadding: 25,
+                          hPadding: 31,
                           child: const Row(
-                            children: [
-                              Icon(
-                                Icons.shopping_bag_outlined,
-                                color: Colors.white,
-                              ),
-                              Spacer(),
-                              Text(
-                                'Ajouter au panier',
-                                style: TextStyle(
-                                  color: Colors.white,
+                                  children: [
+                                    Icon(
+                                      Icons.shopping_bag_outlined,
+                                      color: Colors.white,
+                                    ),
+                                    Spacer(),
+                                    Text(
+                                      'Ajouter au panier',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
                         ),
                       ],
                     ),
