@@ -51,7 +51,9 @@ class _CartScreenState extends State<CartScreen> {
             Positioned(
               bottom: 0,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                color: Colors.white,
                 width: Get.width,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
