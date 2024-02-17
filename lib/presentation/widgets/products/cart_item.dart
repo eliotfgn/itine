@@ -100,43 +100,10 @@ class CartItemCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    '${item.product.price} €',
+                    '${item.product.price} € (${item.quantity})',
                     style: AppTypography.headline3.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: AppColors.secondary.withOpacity(0.1),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.remove_rounded,
-                    color: AppColors.secondary,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    item.quantity.toString(),
-                    style: const TextStyle(
-                        color: AppColors.secondary,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const Icon(
-                    Icons.add_rounded,
-                    color: AppColors.secondary,
                   ),
                 ],
               ),
