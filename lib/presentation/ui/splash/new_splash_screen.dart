@@ -28,9 +28,12 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   SessionStorageService storageService = SessionStorageService();
-  final RequestController _requestController = Get.put(RequestController());
-  final SessionController _sessionController = Get.put(SessionController());
-  final WishlistController _wishlistController = Get.put(WishlistController());
+  final RequestController _requestController =
+      Get.put(RequestController(), permanent: true);
+  final SessionController _sessionController =
+      Get.put(SessionController(), permanent: true);
+  final WishlistController _wishlistController =
+      Get.put(WishlistController(), permanent: true);
   bool loading = true;
 
   @override

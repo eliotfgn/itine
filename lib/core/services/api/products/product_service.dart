@@ -68,7 +68,7 @@ class ProductService extends ApiService {
         'userId': 1,
       },
     );
-    return response.data['data'];
+    return WishlistItem.fromJson(response.data['data']);
   }
 
   Future<List<WishlistItem>> getWishlistItems(int userId) async {

@@ -6,6 +6,7 @@ import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/domains/models/product/product.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
+import 'package:itine/presentation/controllers/product/wishlist_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
 
 class ProductCard extends StatefulWidget {
@@ -18,7 +19,18 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
+  bool liked = false;
+
   final ProductsController _productsController = Get.find<ProductsController>();
+  final WishlistController _wishlistController = Get.find<WishlistController>();
+
+  @override
+  void initState() {
+    setState(() {
+      liked = _wishlistController.hasLiked(widget.product.id);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +69,19 @@ class _ProductCardState extends State<ProductCard> {
                     right: 10,
                     top: 10,
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        setState(() async {
+                          liked = await _wishlistController
+                              .handleLikeButton(widget.product.id);
+                        });
+                      },
                       child: CircleAvatar(
                         backgroundColor:
                             const Color(0xffF1CCA8).withOpacity(0.7),
-                        child: const Icon(CupertinoIcons.heart,
+                        child: Icon(
+                            liked
+                                ? CupertinoIcons.heart_fill
+                                : CupertinoIcons.heart,
                             color: AppColors.secondary),
                       ),
                     ),

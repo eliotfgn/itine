@@ -41,4 +41,21 @@ class WishlistController extends GetxController {
         await _productService.getWishlistItems(1);
     items.addAll(wishlistItems);
   }
+
+  Future<bool> handleLikeButton(int productId) async {
+    bool success = false;
+    if (hasLiked(productId) == false) {
+      success = await addToWishlist(productId);
+    } else {
+      success = await removeFromWishlist(productId);
+    }
+
+    return success;
+  }
+
+  bool hasLiked(int productId) {
+    return items
+            .firstWhereOrNull((element) => element.productId == productId) !=
+        null;
+  }
 }
