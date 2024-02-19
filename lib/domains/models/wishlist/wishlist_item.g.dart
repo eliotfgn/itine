@@ -7,7 +7,7 @@ part of 'wishlist_item.dart';
 // **************************************************************************
 
 WishlistItem _$WishlistItemFromJson(Map<String, dynamic> json) => WishlistItem(
-      id: json['id'] as int?,
+      id: json['id'] as int,
       product: Product.fromJson(json['product'] as Map<String, dynamic>),
       userId: json['userId'] as int?,
     );

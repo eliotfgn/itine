@@ -6,12 +6,12 @@ part 'wishlist_item.g.dart';
 @JsonSerializable()
 class WishlistItem {
   WishlistItem({
-    this.id,
+    required this.id,
     required this.product,
     this.userId,
   });
 
-  int? id;
+  int id;
   final Product product;
   final int? userId;
 

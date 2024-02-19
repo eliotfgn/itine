@@ -77,7 +77,7 @@ class ProductService extends ApiService {
     return items;
   }
 
-  Future<bool> deleteWishlistItem(String id) async {
+  Future<bool> deleteWishlistItem(int id) async {
     Response response = await client.delete('${ApiEndpoints.wishlist}/$id');
 
     return response.data['success'];
