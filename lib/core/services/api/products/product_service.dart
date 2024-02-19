@@ -3,6 +3,7 @@ import 'package:itine/core/services/api/api_endpoints.dart';
 import 'package:itine/core/services/api/base_api_service.dart';
 import 'package:itine/domains/models/category/category.dart';
 import 'package:itine/domains/models/product/product.dart';
+import 'package:itine/domains/models/wishlist/wishlist_item.dart';
 
 enum Gender { man, woman, child }
 
@@ -57,5 +58,28 @@ class ProductService extends ApiService {
     });
 
     return products;
+  }
+
+  Future<bool> addToWishlist(WishlistItem item) async {
+    Response response =
+        await client.post(ApiEndpoints.wishlist, data: item.toJson());
+    return response.data['success'];
+  }
+
+  Future<List<WishlistItem>> getWishlistItems(String userId) async {
+    List<WishlistItem> items = [];
+
+    Response response = await client.get('${ApiEndpoints.wishlist}/$userId');
+    response.data['data'].forEach((item) {
+      items.add(WishlistItem.fromJson(item));
+    });
+
+    return items;
+  }
+
+  Future<bool> deleteWishlistItem(String id) async {
+    Response response = await client.delete('${ApiEndpoints.wishlist}/$id');
+
+    return response.data['success'];
   }
 }

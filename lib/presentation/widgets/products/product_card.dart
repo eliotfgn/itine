@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/domains/models/product/product.dart';
+import 'package:itine/presentation/controllers/product/products_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
 
 class ProductCard extends StatefulWidget {
@@ -17,6 +18,8 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
+  final ProductsController _productsController = Get.find<ProductsController>();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -53,10 +56,14 @@ class _ProductCardState extends State<ProductCard> {
                   Positioned(
                     right: 10,
                     top: 10,
-                    child: CircleAvatar(
-                      backgroundColor: const Color(0xffF1CCA8).withOpacity(0.7),
-                      child: const Icon(CupertinoIcons.heart,
-                          color: AppColors.secondary),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: CircleAvatar(
+                        backgroundColor:
+                            const Color(0xffF1CCA8).withOpacity(0.7),
+                        child: const Icon(CupertinoIcons.heart,
+                            color: AppColors.secondary),
+                      ),
                     ),
                   ),
                 ],

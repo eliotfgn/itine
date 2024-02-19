@@ -12,7 +12,7 @@ import '../../../core/constants/app_colors.dart';
 import '../../widgets/common/CustomButton.dart';
 
 class CartScreen extends StatefulWidget {
-  CartScreen({super.key});
+  const CartScreen({super.key});
 
   @override
   State<CartScreen> createState() => _CartScreenState();

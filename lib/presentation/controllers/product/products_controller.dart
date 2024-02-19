@@ -60,4 +60,8 @@ class ProductsController extends GetxController {
     selectedSize.value = '';
     selectedColor.value = '';
   }
+
+  addToWishlist() {
+    
+  }
 }

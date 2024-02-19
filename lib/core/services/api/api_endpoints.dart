@@ -8,4 +8,5 @@ class ApiEndpoints {
   static const subCategories = '/sub-categories';
 
   static const cart = '/cart-items/';
+  static const wishlist = '/wishlist';
 }
