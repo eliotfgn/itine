@@ -60,10 +60,15 @@ class ProductService extends ApiService {
     return products;
   }
 
-  Future<bool> addToWishlist(WishlistItem item) async {
-    Response response =
-        await client.post(ApiEndpoints.wishlist, data: item.toJson());
-    return response.data['success'];
+  Future<WishlistItem?> addToWishlist(int productId) async {
+    Response response = await client.post(
+      ApiEndpoints.wishlist,
+      data: {
+        'productId': productId,
+        'userId': 1,
+      },
+    );
+    return response.data['data'];
   }
 
   Future<List<WishlistItem>> getWishlistItems(String userId) async {

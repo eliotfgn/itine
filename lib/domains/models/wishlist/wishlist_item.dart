@@ -7,12 +7,12 @@ part 'wishlist_item.g.dart';
 class WishlistItem {
   WishlistItem({
     required this.id,
-    required this.product,
+    required this.productId,
     this.userId,
   });
 
   int id;
-  final Product product;
+  final int productId;
   final int? userId;
 
   factory WishlistItem.fromJson(Map<String, dynamic> json) =>

@@ -14,19 +14,19 @@ class WishlistController extends GetxController {
     super.onInit();
   }
 
-  Future<bool> addToWishlist(WishlistItem item) async {
-    bool success = await _productService.addToWishlist(item);
+  Future<bool> addToWishlist(int productId) async {
+    WishlistItem? item = await _productService.addToWishlist(productId);
 
-    if (success) {
+    if (item != null) {
       items.add(item);
     }
 
-    return success;
+    return item != null;
   }
 
   Future<bool> removeFromWishlist(int productId) async {
     WishlistItem item =
-        items.singleWhere((element) => element.product.id == productId);
+        items.singleWhere((element) => element.productId == productId);
 
     bool success = await _productService.deleteWishlistItem(item.id);
     if (success) {
