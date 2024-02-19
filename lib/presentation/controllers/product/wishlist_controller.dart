@@ -10,7 +10,7 @@ class WishlistController extends GetxController {
 
   @override
   void onInit() async {
-    // TODO: implement onInit
+    await fetchItemsByUser();
     super.onInit();
   }
 
@@ -34,5 +34,11 @@ class WishlistController extends GetxController {
     }
 
     return success;
+  }
+
+  Future<void> fetchItemsByUser() async {
+    List<WishlistItem> wishlistItems =
+        await _productService.getWishlistItems(1);
+    items.addAll(wishlistItems);
   }
 }

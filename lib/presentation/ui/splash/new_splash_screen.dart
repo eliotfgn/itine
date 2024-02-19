@@ -1,6 +1,8 @@
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/services/sesion_storage_service.dart';
 import 'package:itine/presentation/controllers/auth/session_controller.dart';
+import 'package:itine/presentation/controllers/product/wishlist_controller.dart';
+import 'package:itine/presentation/controllers/request/request_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,7 +28,9 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   SessionStorageService storageService = SessionStorageService();
+  final RequestController _requestController = Get.put(RequestController());
   final SessionController _sessionController = Get.put(SessionController());
+  final WishlistController _wishlistController = Get.put(WishlistController());
   bool loading = true;
 
   @override
@@ -43,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: loading
-          ? Column()
+          ? const Column()
           : Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,

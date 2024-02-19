@@ -17,7 +17,7 @@ import '../../controllers/auth/session_controller.dart';
 class MapPage extends StatelessWidget {
   final String selectedLocation; // Lieu sélectionné depuis la recherche
   final SessionController _sessionController = Get.put(SessionController());
-  final RequestController _requestController = Get.put(RequestController());
+  final RequestController _requestController = Get.find<RequestController>();
   final SessionStorageService storageService = SessionStorageService();
 
   final double latitude; // Latitude du lieu sélectionné

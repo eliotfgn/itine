@@ -22,7 +22,7 @@ class GenderView extends StatefulWidget {
 
 class _GenderViewState extends State<GenderView> {
   final ProductsController _productsController = Get.put(ProductsController());
-  final RequestController _requestController = Get.put(RequestController());
+  final RequestController _requestController = Get.find<RequestController>();
   final SubCategoryController _subCategoryController =
       Get.put(SubCategoryController());
   List<Category> categories = [];

@@ -71,7 +71,7 @@ class ProductService extends ApiService {
     return response.data['data'];
   }
 
-  Future<List<WishlistItem>> getWishlistItems(String userId) async {
+  Future<List<WishlistItem>> getWishlistItems(int userId) async {
     List<WishlistItem> items = [];
 
     Response response = await client.get('${ApiEndpoints.wishlist}/$userId');
