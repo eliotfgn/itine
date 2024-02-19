@@ -46,8 +46,10 @@ class WishlistController extends GetxController {
     bool success = false;
     if (hasLiked(productId) == false) {
       success = await addToWishlist(productId);
+      if (success) return true;
     } else {
       success = await removeFromWishlist(productId);
+      if (success) return false;
     }
 
     return success;

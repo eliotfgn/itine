@@ -20,7 +20,7 @@ class ProductByCategoryScreen extends StatefulWidget {
 }
 
 class _ProductByCategoryScreenState extends State<ProductByCategoryScreen> {
-  final RequestController _requestController = Get.find<RequestController>();
+  bool loading = true;
   final ProductsController _productsController = Get.find<ProductsController>();
   final TextEditingController searchController = TextEditingController();
 
@@ -32,7 +32,13 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen> {
 
   @override
   void initState() {
+    setState(() {
+      loading = false;
+    });
     init();
+    setState(() {
+      loading = false;
+    });
     super.initState();
   }
 
@@ -60,7 +66,7 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen> {
                   const SizedBox(
                     height: 30,
                   ),
-                  _requestController.isLoading.isTrue
+                  loading == true
                       ? const Center(
                           child: SpinKitWave(
                             color: AppColors.primary,

@@ -69,11 +69,10 @@ class _ProductCardState extends State<ProductCard> {
                     right: 10,
                     top: 10,
                     child: GestureDetector(
-                      onTap: () {
-                        setState(() async {
-                          liked = await _wishlistController
-                              .handleLikeButton(widget.product.id);
-                        });
+                      onTap: () async {
+                        liked = await _wishlistController
+                            .handleLikeButton(widget.product.id);
+                        setState(() {});
                       },
                       child: CircleAvatar(
                         backgroundColor:
