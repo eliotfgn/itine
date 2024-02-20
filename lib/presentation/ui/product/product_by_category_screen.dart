@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
-import 'package:itine/domains/models/category/category.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
-import 'package:itine/presentation/controllers/request/request_controller.dart';
 import 'package:itine/presentation/widgets/common/custom_app_bar.dart';
 import 'package:itine/presentation/widgets/products/product_card.dart';
 
 import '../../widgets/common/CustomTextFormField.dart';
-import '../../widgets/common/back_button.dart';
 
 class ProductByCategoryScreen extends StatefulWidget {
   const ProductByCategoryScreen({super.key});

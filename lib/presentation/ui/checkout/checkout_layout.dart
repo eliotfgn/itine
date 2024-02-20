@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
+import 'package:itine/core/services/payments/stripe_service.dart';
 import 'package:itine/presentation/controllers/checkout/checkout_navigation_controller.dart';
 import 'package:itine/presentation/widgets/common/CustomButton.dart';
 
@@ -21,14 +23,21 @@ class CheckoutLayout extends StatelessWidget {
             .titles[_checkoutNavigationController.page.value]),
         centerTitle: true,
       ),
-      body: Obx(() => _checkoutNavigationController
-          .screens[_checkoutNavigationController.page.value]),
+      body: Column(
+        children: [
+          SizedBox(
+            height: Get.height * 0.8,
+            child: Obx(() => _checkoutNavigationController
+                .screens[_checkoutNavigationController.page.value]),
+          ),
+        ],
+      ),
       bottomSheet: Container(
         height: 100,
         width: Get.width,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topRight: Radius.circular(15),
             topLeft: Radius.circular(15),
           ),
@@ -50,9 +59,11 @@ class CheckoutLayout extends StatelessWidget {
               height: 15,
             ),
             CustomButton(
-              onTap: () {},
+              onTap: () async {
+                await StripeService().makePayment('43089');
+              },
               width: Get.width,
-              child: Text(
+              child: const Text(
                 'Paiement',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               ),
