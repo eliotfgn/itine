@@ -31,17 +31,17 @@ class StripeService {
     }
   }
 
-  Future<void> makePayment(String amount) async {
+  Future<bool> makePayment(String amount) async {
+    bool success = false;
     try {
       _paymentIntent = await _createPaymentIntent(amount, 'EUR');
 
       PaymentSheetPaymentOption? response =
           await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
-          customFlow: true,
           billingDetails: const BillingDetails(
             name: 'Eliot Fagnon',
-            email: 'elidev@gmail.com',
+            email: 'eliotgaming21@gmail.com',
             phone: '+229 56759471',
             address: Address(
                 city: 'Marseilles',
@@ -55,31 +55,41 @@ class StripeService {
           merchantDisplayName: 'Itine',
         ),
       );
-      await _displayPaymentSheet();
+      success = await _displayPaymentSheet();
 
       if (response != null) {
         print(response.label);
       }
     } catch (err) {
+      success = false;
       throw Exception(err.toString());
     }
+
+    return success;
   }
 
-  _displayPaymentSheet() async {
-    await Stripe.instance.presentPaymentSheet();
-    getx.Get.dialog(const AlertDialog(
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            Icons.check_circle,
-            color: Colors.green,
-            size: 100.0,
+  Future<bool> _displayPaymentSheet() async {
+    bool success = false;
+    await Stripe.instance.presentPaymentSheet().then((value) {
+      Stripe.instance.confirmPaymentSheetPayment().then((value) {
+        success = true;
+        getx.Get.dialog(const AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                size: 100.0,
+              ),
+              SizedBox(height: 10.0),
+              Text("Payment Effectué avec succès!"),
+            ],
           ),
-          SizedBox(height: 10.0),
-          Text("Payment Effectué avec succès!"),
-        ],
-      ),
-    ));
+        ));
+      });
+    });
+
+    return success;
   }
 }
