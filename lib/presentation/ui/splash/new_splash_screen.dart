@@ -1,6 +1,7 @@
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/services/sesion_storage_service.dart';
 import 'package:itine/presentation/controllers/auth/session_controller.dart';
+import 'package:itine/presentation/controllers/product/cart_controller.dart';
 import 'package:itine/presentation/controllers/product/wishlist_controller.dart';
 import 'package:itine/presentation/controllers/request/request_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
@@ -34,6 +35,8 @@ class _SplashScreenState extends State<SplashScreen> {
       Get.put(SessionController(), permanent: true);
   final WishlistController _wishlistController =
       Get.put(WishlistController(), permanent: true);
+  final CartController _cartController =
+      Get.put(CartController(), permanent: true);
   bool loading = true;
 
   @override

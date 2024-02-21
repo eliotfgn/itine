@@ -4,7 +4,7 @@ import 'package:itine/core/services/api/base_api_service.dart';
 import 'package:itine/domains/models/cart_item/cart_item.dart';
 
 class CartService extends ApiService {
-  addToCart(userId, productId, quantity, color, size) async {
+  Future<CartItem> addToCart(userId, productId, quantity, color, size) async {
     Response response = await client.post(
       ApiEndpoints.cart,
       data: {
@@ -16,7 +16,7 @@ class CartService extends ApiService {
       },
     );
 
-    return response.data['data'];
+    return CartItem.fromJson(response.data['data']);
   }
 
   getItems(int userId) async {

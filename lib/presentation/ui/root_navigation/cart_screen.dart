@@ -19,63 +19,55 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  bool isLoading = false;
   final CartController _cartController = Get.find<CartController>();
-  final RequestController _requestController = Get.find<RequestController>();
-
-  init() async {
-    await _cartController.loadCart();
-  }
-
-  @override
-  void initState() {
-    init();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Obx(
-        () => _requestController.isLoading.value == true
+      child: SizedBox(
+        child: isLoading == true
             ? const SpinKitWave(
                 color: AppColors.primary,
               )
             : Stack(
                 children: [
-                  ListView(
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 30, horizontal: 20),
-                    children: [
-                      Text(
-                        'Mon panier',
-                        style: AppTypography.headline1.copyWith(fontSize: 25),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      _cartController.items.isNotEmpty == true
-                          ? Column(
-                              children: _cartController.items
-                                  .map((item) => CartItemCard(item: item))
-                                  .toList(),
-                            )
-                          : Column(
-                              children: [
-                                SizedBox(
-                                  height: Get.height * 0.6,
-                                  width: Get.width * 0.8,
-                                  child: SvgPicture.asset(
-                                      'assets/images/empty_cart.svg'),
-                                ),
-                                Text(
-                                  'Votre panier est vide.',
-                                  style: AppTypography.headline3
-                                      .copyWith(color: AppColors.primary),
-                                ),
-                              ],
-                            ),
-                    ],
+                  Obx(
+                    () => ListView(
+                      physics: const BouncingScrollPhysics(),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 30, horizontal: 20),
+                      children: [
+                        Text(
+                          'Mon panier',
+                          style: AppTypography.headline1.copyWith(fontSize: 25),
+                        ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        _cartController.items.isNotEmpty == true
+                            ? Column(
+                                children: _cartController.items
+                                    .map((item) => CartItemCard(item: item))
+                                    .toList(),
+                              )
+                            : Column(
+                                children: [
+                                  SizedBox(
+                                    height: Get.height * 0.6,
+                                    width: Get.width * 0.8,
+                                    child: SvgPicture.asset(
+                                        'assets/images/empty_cart.svg'),
+                                  ),
+                                  Text(
+                                    'Votre panier est vide.',
+                                    style: AppTypography.headline3
+                                        .copyWith(color: AppColors.primary),
+                                  ),
+                                ],
+                              ),
+                      ],
+                    ),
                   ),
                   Positioned(
                     bottom: 0,

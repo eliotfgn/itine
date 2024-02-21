@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:itine/core/services/api/products/cart_service.dart';
 import 'package:itine/domains/models/cart_item/cart_item.dart';
+import 'package:itine/domains/models/product/product.dart';
 
 class CartController extends GetxController {
   final CartService _cartService = CartService();
@@ -8,6 +9,12 @@ class CartController extends GetxController {
   RxDouble total = .0.obs;
   RxInt totalArticles = 0.obs;
   RxList<CartItem> items = <CartItem>[].obs;
+
+  @override
+  onInit() async {
+    await loadCart();
+    super.onInit();
+  }
 
   Future<void> loadCart() async {
     int userId = 1; // _sessionController.user.value!.id;
@@ -24,7 +31,11 @@ class CartController extends GetxController {
   }
 
   void addToCart(userId, productId, quantity, color, size) async {
-    await _cartService.addToCart(userId, productId, quantity, color, size);
+    CartItem item =
+        await _cartService.addToCart(userId, productId, quantity, color, size);
+    items.add(item);
+    total.value += (item.quantity * item.product.price);
+    totalArticles.value += 1;
   }
 
   Future<bool> removeFromCart(CartItem item) async {
@@ -36,5 +47,11 @@ class CartController extends GetxController {
     }
 
     return success;
+  }
+
+  bool productInCart(int id) {
+    CartItem? item =
+        items.firstWhereOrNull((element) => element.product.id == id);
+    return item != null;
   }
 }

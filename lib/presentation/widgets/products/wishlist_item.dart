@@ -5,12 +5,14 @@ import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/domains/models/product/product.dart';
+import 'package:itine/presentation/controllers/product/cart_controller.dart';
 import 'package:itine/presentation/widgets/common/CustomButton.dart';
 
 class WishlistItem extends StatelessWidget {
   WishlistItem({super.key, required this.product});
 
   final Product product;
+  final CartController _cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -101,18 +103,22 @@ class WishlistItem extends StatelessWidget {
                 ],
               ),
             ),
-            CustomButton(
-              onTap: () {},
-              width: 120,
-              vPadding: 5,
-              color: AppColors.secondary,
-              child: const Text(
-                'Ajouter au panier',
-                style: TextStyle(fontSize: 11),
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
+            Obx(
+              () => _cartController.productInCart(product.id) == false
+                  ? CustomButton(
+                      onTap: () {},
+                      width: 120,
+                      vPadding: 5,
+                      color: AppColors.secondary,
+                      child: const Text(
+                        'Ajouter au panier',
+                        style: TextStyle(fontSize: 11),
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    )
+                  : const SizedBox(),
+            )
           ],
         ),
       ),
