@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -57,7 +58,9 @@ class WishlistItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 color: AppColors.primary,
                 image: DecorationImage(
-                    image: AssetImage("assets/images/${product.cover}"),
+                    image: CachedNetworkImageProvider(
+                      product.images[product.cover - 1],
+                    ),
                     fit: BoxFit.cover),
               ),
             ),

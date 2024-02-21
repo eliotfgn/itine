@@ -3,6 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
+import 'package:itine/presentation/controllers/product/sub_category_controller.dart';
 import 'package:itine/presentation/widgets/common/custom_app_bar.dart';
 import 'package:itine/presentation/widgets/products/product_card.dart';
 
@@ -20,6 +21,8 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen> {
   bool loading = true;
   final ProductsController _productsController = Get.find<ProductsController>();
   final TextEditingController searchController = TextEditingController();
+  final SubCategoryController _subCategoryController =
+      Get.find<SubCategoryController>();
 
   String category = Get.arguments;
 
@@ -82,7 +85,9 @@ class _ProductByCategoryScreenState extends State<ProductByCategoryScreen> {
                 ],
               ),
             ),
-            const CustomAppBar(title: 'Sneakers')
+            CustomAppBar(
+              title: _subCategoryController.activeCategory.value,
+            )
           ],
         ),
       ),
