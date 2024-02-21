@@ -28,42 +28,16 @@ class HomeScreen extends StatelessWidget {
           foregroundColor: Colors.black,
           elevation: 0,
           toolbarHeight: 75,
-          title: Column(
+          title: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
+              SizedBox(
                 height: 10,
               ),
-              const Text(
+              Text(
                 'Boutique',
                 style: AppTypography.subtitle2,
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    'assets/icons/location.svg',
-                    height: 30,
-                    color: AppColors.primary,
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  const Text(
-                    'Paris, France',
-                    style: AppTypography.headline3,
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  const Icon(
-                    Icons.keyboard_arrow_down_rounded,
-                  )
-                ],
-              )
             ],
           ),
           bottom: TabBar(

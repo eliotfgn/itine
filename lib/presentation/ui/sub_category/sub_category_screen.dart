@@ -37,10 +37,10 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-          children: [
-            Obx(
-              () => _requestController.isLoading.value
+        child: Obx(
+          () => Stack(
+            children: [
+              _requestController.isLoading.value
                   ? const Center(
                       child: SpinKitWave(
                         color: AppColors.primary,
@@ -106,9 +106,9 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                                   .toList()
                             ],
                     ),
-            ),
-            const CustomAppBar(title: 'Chaussures')
-          ],
+              CustomAppBar(title: _subCategoryController.activeCategory.value)
+            ],
+          ),
         ),
       ),
     );
