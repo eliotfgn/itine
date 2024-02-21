@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                'Boutique',
+                'Itine',
                 style: AppTypography.subtitle2,
               ),
             ],
