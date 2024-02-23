@@ -1,16 +1,19 @@
 import 'package:get/get.dart';
 import 'package:itine/core/services/api/products/product_service.dart';
 import 'package:itine/domains/models/wishlist/wishlist_item.dart';
+import 'package:itine/presentation/controllers/auth/session_controller.dart';
 
 class WishlistController extends GetxController {
   final ProductService _productService = ProductService();
+
+  final SessionController _sessionController = Get.find<SessionController>();
 
   RxInt index = 0.obs;
   RxList<WishlistItem> items = <WishlistItem>[].obs;
 
   @override
   void onInit() async {
-    await fetchItemsByUser();
+    if (_sessionController.isConnected.isTrue) await fetchItemsByUser();
     super.onInit();
   }
 

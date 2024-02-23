@@ -2,9 +2,12 @@ import 'package:get/get.dart';
 import 'package:itine/core/services/api/products/cart_service.dart';
 import 'package:itine/domains/models/cart_item/cart_item.dart';
 import 'package:itine/domains/models/product/product.dart';
+import 'package:itine/presentation/controllers/auth/session_controller.dart';
 
 class CartController extends GetxController {
   final CartService _cartService = CartService();
+
+  final SessionController _sessionController = Get.find<SessionController>();
 
   RxDouble total = .0.obs;
   RxInt totalArticles = 0.obs;
@@ -12,7 +15,7 @@ class CartController extends GetxController {
 
   @override
   onInit() async {
-    await loadCart();
+    if (_sessionController.isConnected.isTrue) await loadCart();
     super.onInit();
   }
 
