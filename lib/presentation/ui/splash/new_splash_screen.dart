@@ -43,9 +43,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     checkIsFirstAppLoad();
-    setState(() {
-      loading = false;
-    });
   }
 
   @override
@@ -162,6 +159,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   checkIsFirstAppLoad() async {
     bool firstAppLoad = await storageService.isFirstAppLoad();
+    setState(() {
+      loading = false;
+    });
 
     if (!firstAppLoad) {
       Get.offAllNamed(AppRoutes.main);

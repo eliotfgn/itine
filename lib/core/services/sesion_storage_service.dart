@@ -59,6 +59,13 @@ class SessionStorageService {
 
     return firstTime == null;
   }
+
+  Future<void> clearSession() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.remove(Keys.userInfos);
+    prefs.remove(Keys.token);
+  }
 }
 
 class Keys {
