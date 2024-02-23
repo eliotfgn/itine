@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/domains/models/product/product.dart';
 import 'package:itine/presentation/controllers/product/wishlist_controller.dart';
-import 'package:itine/presentation/widgets/common/back_button.dart';
-import 'package:itine/presentation/widgets/common/custom_app_bar.dart';
 import 'package:itine/presentation/widgets/products/wishlist_item.dart';
 
 class WishlistScreen extends StatelessWidget {
@@ -27,7 +27,29 @@ class WishlistScreen extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
-          ..._wishlistController.items.map((item) => WishlistItem(product: item.product))
+          _wishlistController.items.isNotEmpty
+              ? Column(
+                  children: [
+                    ..._wishlistController.items
+                        .map((item) => WishlistItem(product: item.product))
+                  ],
+                )
+              : Column(
+                  children: [
+                    SizedBox(
+                      height: Get.height * 0.6,
+                      width: Get.width * 0.8,
+                      child:
+                          SvgPicture.asset('assets/images/empty_wishlist.svg'),
+                    ),
+                    Text(
+                      'Vous n\'avez aucun produit en favori.',
+                      style: AppTypography.headline3.copyWith(
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  ],
+                ),
         ],
       ),
     );

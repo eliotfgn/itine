@@ -5,9 +5,11 @@ import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/domains/models/product/product.dart';
+import 'package:itine/presentation/controllers/auth/session_controller.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
 import 'package:itine/presentation/controllers/product/wishlist_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
+import 'package:itine/presentation/widgets/bottom_sheets/not_connected_bottom_sheet.dart';
 
 class ProductCard extends StatefulWidget {
   const ProductCard({super.key, required this.product});
@@ -23,6 +25,7 @@ class _ProductCardState extends State<ProductCard> {
 
   final ProductsController _productsController = Get.find<ProductsController>();
   final WishlistController _wishlistController = Get.find<WishlistController>();
+  final SessionController _sessionController = Get.find<SessionController>();
 
   @override
   void initState() {
@@ -70,9 +73,13 @@ class _ProductCardState extends State<ProductCard> {
                     top: 10,
                     child: GestureDetector(
                       onTap: () async {
-                        liked = await _wishlistController
-                            .handleLikeButton(widget.product.id);
-                        setState(() {});
+                        if (_sessionController.isConnected.isTrue) {
+                          liked = await _wishlistController
+                              .handleLikeButton(widget.product.id);
+                          setState(() {});
+                        } else {
+                          Get.bottomSheet(const NotConnectedBottomSheet());
+                        }
                       },
                       child: CircleAvatar(
                         backgroundColor:
@@ -102,7 +109,7 @@ class _ProductCardState extends State<ProductCard> {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                const Row(
+                /* const Row(
                   children: [
                     Icon(
                       Icons.star_rounded,
@@ -110,7 +117,7 @@ class _ProductCardState extends State<ProductCard> {
                     ),
                     Text('4.6'),
                   ],
-                )
+                ) */
               ],
             ),
             Text(

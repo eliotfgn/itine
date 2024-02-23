@@ -20,7 +20,7 @@ class CartController extends GetxController {
   }
 
   Future<void> loadCart() async {
-    int userId = 1; // _sessionController.user.value!.id;
+    int userId = _sessionController.user.value!.id;
 
     items.value = await _cartService.getItems(userId);
 
@@ -33,9 +33,9 @@ class CartController extends GetxController {
     totalArticles.value = items.length;
   }
 
-  void addToCart(userId, productId, quantity, color, size) async {
-    CartItem item =
-        await _cartService.addToCart(userId, productId, quantity, color, size);
+  Future<void> addToCart(productId, quantity, color, size) async {
+    CartItem item = await _cartService.addToCart(
+        _sessionController.user.value?.id, productId, quantity, color, size);
     items.add(item);
     total.value += (item.quantity * item.product.price);
     totalArticles.value += 1;

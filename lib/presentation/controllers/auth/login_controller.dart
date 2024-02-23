@@ -16,7 +16,9 @@ class LoginController extends GetxController {
 
     if (res?.$1 != null) {
       await _sessionStorageService.saveToken(res!.$1);
+      await _sessionStorageService.saveConnectedUser(res.$2);
       _sessionController.user.value = res.$2;
+      _sessionController.isConnected.value = true;
       Get.toNamed(AppRoutes.main);
     }
   }

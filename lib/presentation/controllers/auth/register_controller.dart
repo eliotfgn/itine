@@ -9,7 +9,7 @@ class RegisterController extends GetxController {
   register(String lastName, String firstName, String email, String password,
       String phoneNumber, String country, String town) async {
     if (await _authService.register(UserRequest(firstName, lastName, email,
-        password, country, town, int.parse(phoneNumber)))) {
+        password, country, town, phoneNumber))) {
       Get.toNamed(AppRoutes.login);
     }
   }

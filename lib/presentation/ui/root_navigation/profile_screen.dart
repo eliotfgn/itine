@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
-import 'package:itine/presentation/widgets/common/bottom_sheets/logout_bottom_sheet.dart';
+import 'package:itine/presentation/controllers/auth/session_controller.dart';
+import 'package:itine/presentation/routes/app_routes.dart';
+import 'package:itine/presentation/widgets/bottom_sheets/logout_bottom_sheet.dart';
+import 'package:itine/presentation/widgets/common/CustomButton.dart';
 
 class ProfileItem {
   ProfileItem(this.title, this.icon, [this.color, this.onTap]);
@@ -15,6 +18,8 @@ class ProfileItem {
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
+
+  final SessionController _sessionController = Get.find<SessionController>();
 
   List<ProfileItem> items = [
     ProfileItem(
@@ -59,40 +64,74 @@ class ProfileScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          ...items.map(
-            (e) => Container(
-              margin: const EdgeInsets.only(bottom: 20),
-              child: ListTile(
-                title: Text(
-                  e.title,
-                  style: AppTypography.headline3.copyWith(fontSize: 17),
-                ),
-                leading: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: e.icon,
-                  ),
-                ),
-                tileColor: e.color ?? AppColors.secondary.withOpacity(0.05),
-                contentPadding: const EdgeInsets.symmetric(
-                  vertical: 5,
-                  horizontal: 10,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                ),
-                onTap: e.onTap,
-              ),
-            ),
-          )
+          _sessionController.isConnected.isTrue
+              ? Column(
+                  children: [
+                    ...items.map(
+                      (e) => Container(
+                        margin: const EdgeInsets.only(bottom: 20),
+                        child: ListTile(
+                          title: Text(
+                            e.title,
+                            style:
+                                AppTypography.headline3.copyWith(fontSize: 17),
+                          ),
+                          leading: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: e.icon,
+                            ),
+                          ),
+                          tileColor:
+                              e.color ?? AppColors.secondary.withOpacity(0.05),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 5,
+                            horizontal: 10,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          trailing: const Icon(
+                            Icons.arrow_forward_ios_rounded,
+                          ),
+                          onTap: e.onTap,
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              : Column(
+                  children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const Center(
+                      child: Text(
+                        'Vous êtes actuellement déconnecté. Veuillez vous connecter pour profiter d\'une expérience personalisée.',
+                        style: AppTypography.subtitle2,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    CustomButton(
+                      onTap: () {
+                        Get.offAndToNamed(AppRoutes.login);
+                      },
+                      width: Get.width,
+                      child: const Text(
+                        'Se connecter',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    )
+                  ],
+                )
         ],
       ),
     ));

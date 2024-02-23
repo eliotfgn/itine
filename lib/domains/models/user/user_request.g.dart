@@ -13,7 +13,7 @@ UserRequest _$UserRequestFromJson(Map<String, dynamic> json) => UserRequest(
       json['password'] as String,
       json['country'] as String,
       json['town'] as String,
-      json['phoneNumber'] as int,
+      json['phoneNumber'] as String,
     );
 
 Map<String, dynamic> _$UserRequestToJson(UserRequest instance) =>

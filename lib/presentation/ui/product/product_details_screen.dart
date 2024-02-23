@@ -6,8 +6,10 @@ import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/domains/models/product/product.dart';
+import 'package:itine/presentation/controllers/auth/session_controller.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
 import 'package:itine/presentation/controllers/request/request_controller.dart';
+import 'package:itine/presentation/widgets/bottom_sheets/not_connected_bottom_sheet.dart';
 import 'package:itine/presentation/widgets/common/CustomButton.dart';
 
 import '../../widgets/common/back_button.dart';
@@ -36,7 +38,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   }
 
   final ProductsController _productsController = Get.find<ProductsController>();
-  final RequestController _requestController = Get.find<RequestController>();
+  final SessionController _sessionController = Get.find<SessionController>();
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +105,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     const SizedBox(
                                       height: 5,
                                     ),
-                                    Row(
+                                    /* Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
@@ -129,7 +131,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                               fontSize: 15),
                                         ),
                                       ],
-                                    ),
+                                    ), */
                                   ],
                                 ),
                               ),
@@ -351,31 +353,48 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           ],
                         ),
                         CustomButton(
-                          onTap: () {
-                            _productsController.addToCart(
-                                product.id, quantity, selectedColor, size);
-                            setState(() {
-                              quantity = 1;
-                            });
+                          onTap: () async {
+                            if (_sessionController.isConnected.isTrue) {
+                              await _productsController.addToCart(
+                                  product.id, quantity, selectedColor, size);
+                              setState(() {
+                                quantity = 1;
+                              });
+                              Get.showSnackbar(
+                                const GetSnackBar(
+                                  message: 'Article ajouté au panier.',
+                                  borderRadius: 50,
+                                  duration: Duration(seconds: 1),
+                                  backgroundColor: AppColors.secondary,
+                                  margin: EdgeInsets.symmetric(
+                                    horizontal: 25,
+                                    vertical: 10,
+                                  ),
+                                  maxWidth: 250,
+                                ),
+                              );
+                            } else {
+                              Get.bottomSheet(const NotConnectedBottomSheet());
+                            }
                           },
                           width: Get.width * 0.55,
                           color: AppColors.secondary,
                           hPadding: 31,
                           child: const Row(
-                                  children: [
-                                    Icon(
-                                      Icons.shopping_bag_outlined,
-                                      color: Colors.white,
-                                    ),
-                                    Spacer(),
-                                    Text(
-                                      'Ajouter au panier',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ],
+                            children: [
+                              Icon(
+                                Icons.shopping_bag_outlined,
+                                color: Colors.white,
+                              ),
+                              Spacer(),
+                              Text(
+                                'Ajouter au panier',
+                                style: TextStyle(
+                                  color: Colors.white,
                                 ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

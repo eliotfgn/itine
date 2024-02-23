@@ -18,7 +18,8 @@ class WishlistController extends GetxController {
   }
 
   Future<bool> addToWishlist(int productId) async {
-    WishlistItem? item = await _productService.addToWishlist(productId);
+    WishlistItem? item = await _productService.addToWishlist(
+        productId, _sessionController.user.value?.id);
 
     if (item != null) {
       items.add(item);
@@ -40,8 +41,8 @@ class WishlistController extends GetxController {
   }
 
   Future<void> fetchItemsByUser() async {
-    List<WishlistItem> wishlistItems =
-        await _productService.getWishlistItems(1);
+    List<WishlistItem> wishlistItems = await _productService
+        .getWishlistItems(_sessionController.user.value?.id ?? -1);
     items.addAll(wishlistItems);
   }
 

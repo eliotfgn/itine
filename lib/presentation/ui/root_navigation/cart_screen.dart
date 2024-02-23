@@ -25,15 +25,15 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SizedBox(
-        child: isLoading == true
-            ? const SpinKitWave(
-                color: AppColors.primary,
-              )
-            : Stack(
-                children: [
-                  Obx(
-                    () => ListView(
+      child: Obx(
+        () => SizedBox(
+          child: isLoading == true
+              ? const SpinKitWave(
+                  color: AppColors.primary,
+                )
+              : Stack(
+                  children: [
+                    ListView(
                       physics: const BouncingScrollPhysics(),
                       padding: const EdgeInsets.symmetric(
                           vertical: 30, horizontal: 20),
@@ -68,50 +68,55 @@ class _CartScreenState extends State<CartScreen> {
                               ),
                       ],
                     ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 5),
-                      color: Colors.white,
-                      width: Get.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                  '${_cartController.totalArticles.toString()} ${_cartController.totalArticles > 1 ? 'articles' : 'article'}'),
-                              Text(
-                                '${_cartController.total.toString()} €',
-                                style: AppTypography.headline2
-                                    .copyWith(fontWeight: FontWeight.w800),
+                    _cartController.items.isEmpty
+                        ? const SizedBox()
+                        : Positioned(
+                            bottom: 0,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 5),
+                              color: Colors.white,
+                              width: Get.width,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          '${_cartController.totalArticles.toString()} ${_cartController.totalArticles > 1 ? 'articles' : 'article'}'),
+                                      Text(
+                                        '${_cartController.total.toString()} €',
+                                        style: AppTypography.headline2.copyWith(
+                                            fontWeight: FontWeight.w800),
+                                      ),
+                                    ],
+                                  ),
+                                  const Spacer(),
+                                  CustomButton(
+                                    onTap: () {
+                                      Get.toNamed(AppRoutes.checkout);
+                                    },
+                                    width: 150,
+                                    color: AppColors.secondary,
+                                    hPadding: 25,
+                                    child: const Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text('Commander'),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          const Spacer(),
-                          CustomButton(
-                            onTap: () {
-                              Get.toNamed(AppRoutes.checkout);
-                            },
-                            width: 150,
-                            color: AppColors.secondary,
-                            hPadding: 25,
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('Commander'),
-                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
+                          )
+                  ],
+                ),
+        ),
       ),
     );
   }

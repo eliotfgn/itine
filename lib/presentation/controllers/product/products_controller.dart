@@ -39,11 +39,10 @@ class ProductsController extends GetxController {
     );
   }
 
-  addToCart(productId, quantity, color, size) {
+  addToCart(productId, quantity, color, size) async {
     // Using static value just for testing and bcz we need to refactor all the auth flow
     int userId = 1; // _sessionController.user.value!.id;
-    _cartController.addToCart(
-      userId,
+    await _cartController.addToCart(
       productId,
       quantity,
       color,
@@ -61,7 +60,5 @@ class ProductsController extends GetxController {
     selectedColor.value = '';
   }
 
-  addToWishlist() {
-    
-  }
+  addToWishlist() {}
 }

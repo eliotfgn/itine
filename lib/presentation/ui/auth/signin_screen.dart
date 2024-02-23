@@ -79,16 +79,19 @@ class SigninScreen extends StatelessWidget {
                         height: 35,
                       ),
                       CustomButton(
-                          width: Get.width,
-                          onTap: () {
-                            _loginController.login(
-                                emailController.text, passwordController.text);
-                          },
-                          child: Text(
-                            'Se connecter',
-                            style: AppTypography.subtitle1
-                                .copyWith(color: Colors.white),
-                          )),
+                        width: Get.width,
+                        onTap: () async {
+                          await _loginController.login(
+                            emailController.text,
+                            passwordController.text,
+                          );
+                        },
+                        child: Text(
+                          'Se connecter',
+                          style: AppTypography.subtitle1
+                              .copyWith(color: Colors.white),
+                        ),
+                      ),
                     ],
                   ),
                 ),
