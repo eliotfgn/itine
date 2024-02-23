@@ -13,6 +13,7 @@ class CustomButton extends StatefulWidget {
     this.hPadding,
     this.vPadding,
     this.color,
+    this.borderColor,
   });
 
   Widget child;
@@ -21,6 +22,7 @@ class CustomButton extends StatefulWidget {
   final double? hPadding;
   final double? vPadding;
   final Color? color;
+  final Color? borderColor;
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -40,6 +42,10 @@ class _CustomButtonState extends State<CustomButton> {
           backgroundColor: widget.color ?? AppColors.primary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
+            side: BorderSide(
+              color: widget.borderColor ?? (widget.color ?? AppColors.primary),
+              width: 2,
+            ),
           ),
           padding: EdgeInsets.symmetric(
               vertical: widget.vPadding ?? 15,

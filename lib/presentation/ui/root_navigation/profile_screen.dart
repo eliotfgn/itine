@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
+import 'package:itine/presentation/widgets/common/bottom_sheets/logout_bottom_sheet.dart';
 
 class ProfileItem {
-  ProfileItem(this.title, this.icon, [this.color]);
+  ProfileItem(this.title, this.icon, [this.color, this.onTap]);
 
   final String title;
   final Widget icon;
   Color? color;
+  VoidCallback? onTap;
 }
 
 class ProfileScreen extends StatelessWidget {
@@ -34,6 +37,9 @@ class ProfileScreen extends StatelessWidget {
       'Déconnexion',
       const Icon(Icons.logout_rounded),
       Colors.red.withOpacity(0.65),
+      () => Get.bottomSheet(
+        LogoutBottomSheet(),
+      ),
     ),
   ];
 
@@ -83,6 +89,7 @@ class ProfileScreen extends StatelessWidget {
                 trailing: Icon(
                   Icons.arrow_forward_ios_rounded,
                 ),
+                onTap: e.onTap,
               ),
             ),
           )

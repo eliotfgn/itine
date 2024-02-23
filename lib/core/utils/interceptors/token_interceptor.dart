@@ -9,8 +9,7 @@ class TokenInterceptor extends Interceptor {
         options.path.contains('register'))) {
       String? token = await SessionStorageService().getToken();
       options.headers = {
-        'Authorization':
-            'Bearer ${token ?? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGl0aW5lLmZyIiwiaWF0IjoxNzA4MDQ2MzU2LCJleHAiOjE3Mzk1ODIzNTZ9.6g8BRhHaOdajwUhULMNT5t2khqukIoaaA-9-IyAikv8'}',
+        'Authorization': 'Bearer $token',
         // Using standard token just for debug
       };
     }
