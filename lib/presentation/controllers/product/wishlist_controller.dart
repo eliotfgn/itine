@@ -18,6 +18,7 @@ class WishlistController extends GetxController {
   }
 
   Future<bool> addToWishlist(int productId) async {
+    print(_sessionController.user.value?.id);
     WishlistItem? item = await _productService.addToWishlist(
         productId, _sessionController.user.value?.id);
 
