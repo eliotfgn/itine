@@ -69,6 +69,7 @@ class SessionStorageService {
 }
 
 class Keys {
+  static const String userCity = 'userCity';
   static const String userInfos = 'userInfos';
   static const String token = 'token';
   static const String firstTime = 'firstTime';

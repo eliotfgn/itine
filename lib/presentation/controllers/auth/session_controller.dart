@@ -9,6 +9,7 @@ class SessionController extends GetxController {
 
   Rxn<User> user = Rxn<User>();
   RxBool isConnected = false.obs;
+  RxString userCity = ''.obs;
 
   @override
   onInit() async {
@@ -19,6 +20,8 @@ class SessionController extends GetxController {
     } else {
       isConnected.value = true;
     }
+
+    await getUserCity();
 
     super.onInit();
   }
@@ -37,5 +40,10 @@ class SessionController extends GetxController {
     await _sessionStorageService.clearSession();
     user.value = null;
     isConnected.value = false;
+  }
+
+  Future<void> getUserCity() async {
+    String? city = await _sessionStorageService.get(Keys.userCity);
+    userCity.value = city ?? '';
   }
 }

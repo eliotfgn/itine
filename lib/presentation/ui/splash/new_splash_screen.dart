@@ -31,8 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
   SessionStorageService storageService = SessionStorageService();
   final RequestController _requestController =
       Get.put(RequestController(), permanent: true);
-  final SessionController _sessionController =
-      Get.put(SessionController(), permanent: true);
+  final SessionController _sessionController = Get.put(SessionController());
   final WishlistController _wishlistController =
       Get.put(WishlistController(), permanent: true);
   final CartController _cartController =

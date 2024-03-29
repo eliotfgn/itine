@@ -4,18 +4,37 @@ import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/constants/app_typography.dart';
 import 'package:itine/core/services/api/products/product_service.dart';
+import 'package:itine/core/services/sesion_storage_service.dart';
+import 'package:itine/presentation/controllers/auth/session_controller.dart';
 import 'package:itine/presentation/controllers/product/products_controller.dart';
 import 'package:itine/presentation/controllers/request/request_controller.dart';
+import 'package:itine/presentation/routes/app_routes.dart';
 
 import '../../widgets/gender/gender_view.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController searchController = TextEditingController();
 
   final ProductsController _productsController = Get.put(ProductsController());
+
+  final SessionController _sessionController = Get.put(SessionController());
+
   final RequestController _requestController = Get.find<RequestController>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _sessionController.getUserCity();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,17 +47,45 @@ class HomeScreen extends StatelessWidget {
           foregroundColor: Colors.black,
           elevation: 0,
           toolbarHeight: 75,
-          title: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                'Itine',
-                style: AppTypography.subtitle2,
-              ),
-            ],
+          title: Obx(
+            () => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icons/location.svg',
+                      height: 30,
+                      color: AppColors.primary,
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoutes.addressSearch);
+                      },
+                      child: Text(
+                        _sessionController.userCity.value != ''
+                            ? '${_sessionController.userCity.value}, France'
+                            : 'Changer votre adresse',
+                        style: AppTypography.headline3,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    const Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
           bottom: TabBar(
               labelColor: Colors.black,

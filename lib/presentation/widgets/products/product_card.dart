@@ -78,7 +78,7 @@ class _ProductCardState extends State<ProductCard> {
                               .handleLikeButton(widget.product.id);
                           setState(() {});
                         } else {
-                          Get.bottomSheet(const NotConnectedBottomSheet());
+                          Get.bottomSheet(NotConnectedBottomSheet());
                         }
                       },
                       child: CircleAvatar(
