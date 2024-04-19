@@ -2,15 +2,14 @@
 // import 'package:Itine/screens/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/services/sesion_storage_service.dart';
 import 'package:itine/presentation/controllers/request/request_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../controllers/auth/session_controller.dart';
 // import 'package:provider/provider.dart';
 // import '../../../UseridProvider.dart';
 
@@ -197,12 +196,12 @@ class _MapPageState extends State<MapPage> {
              },
            ),*/
           DraggableScrollableSheet(
-            initialChildSize:
-                0.45, // Taille initiale du DraggableScrollableSheet (50% de la hauteur de l'écran)
-            minChildSize:
-                0.20, // Taille minimale du DraggableScrollableSheet (10% de la hauteur de l'écran)
-            maxChildSize:
-                0.5, // Taille maximale du DraggableScrollableSheet (100% de la hauteur de l'écran)
+            initialChildSize: 0.45,
+            // Taille initiale du DraggableScrollableSheet (50% de la hauteur de l'écran)
+            minChildSize: 0.20,
+            // Taille minimale du DraggableScrollableSheet (10% de la hauteur de l'écran)
+            maxChildSize: 0.5,
+            // Taille maximale du DraggableScrollableSheet (100% de la hauteur de l'écran)
             builder: (BuildContext context, ScrollController scrollController) {
               return isEligibleCity
                   ? Container(
@@ -223,13 +222,12 @@ class _MapPageState extends State<MapPage> {
                               children: [
                                 Container(
                                   padding: EdgeInsets.all(160.0),
-                                  height:
-                                      4.0, // Hauteur de la poignée de glissement
-                                  width:
-                                      40.0, // Largeur de la poignée de glissement
-                                  margin: EdgeInsets.symmetric(
-                                      vertical:
-                                          8.0), // Marge autour de la poignée
+                                  height: 4.0,
+                                  // Hauteur de la poignée de glissement
+                                  width: 40.0,
+                                  // Largeur de la poignée de glissement
+                                  margin: EdgeInsets.symmetric(vertical: 8.0),
+                                  // Marge autour de la poignée
                                   decoration: BoxDecoration(
                                     color: Colors.grey[400],
                                     borderRadius: BorderRadius.circular(2.0),
@@ -297,7 +295,7 @@ class _MapPageState extends State<MapPage> {
                                     /*}*/
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: AppColors.primary,
+                                    backgroundColor: AppColors.primary,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
@@ -322,7 +320,7 @@ class _MapPageState extends State<MapPage> {
                       ),
                     )
                   : Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(8.0),
@@ -339,13 +337,12 @@ class _MapPageState extends State<MapPage> {
                               children: [
                                 Container(
                                   padding: EdgeInsets.all(160.0),
-                                  height:
-                                      4.0, // Hauteur de la poignée de glissement
-                                  width:
-                                      40.0, // Largeur de la poignée de glissement
-                                  margin: EdgeInsets.symmetric(
-                                      vertical:
-                                          8.0), // Marge autour de la poignée
+                                  height: 4.0,
+                                  // Hauteur de la poignée de glissement
+                                  width: 40.0,
+                                  // Largeur de la poignée de glissement
+                                  margin: EdgeInsets.symmetric(vertical: 8.0),
+                                  // Marge autour de la poignée
                                   decoration: BoxDecoration(
                                     color: Colors.grey[400],
                                     borderRadius: BorderRadius.circular(2.0),
@@ -404,14 +401,14 @@ class _MapPageState extends State<MapPage> {
                                         .text; // Récupérer l'email saisi dans le TextFormField
                                     await saveEmailToSharedPreferences(email);
                                     // Affichage d'un snackbar pour indiquer que l'email a été enregistré
-                                    final snackBar = SnackBar(
+                                    const snackBar = SnackBar(
                                         content: Text(
                                             'Adresse email enregistrée avec succès !'));
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(snackBar);
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: AppColors.primary,
+                                    backgroundColor: AppColors.primary,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),

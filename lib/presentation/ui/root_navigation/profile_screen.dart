@@ -68,7 +68,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               style: AppTypography.headline1.copyWith(fontSize: 25),
             ),
             const SizedBox(
-              height: 20,
+              height: 60,
             ),
             _sessionController.isConnected.isTrue
                 ? Column(
