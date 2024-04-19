@@ -13,4 +13,5 @@ class AppRoutes {
   static const splashScreen = '/splash';
   static const addressSearch = '/addressSearch';
   static const mapPage = '/mapPage';
+  static const chat = '/chat';
 }

@@ -44,6 +44,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       const Icon(Icons.policy_rounded),
     ),
     ProfileItem(
+      'Contactez-nous',
+      const Icon(Icons.support_agent_rounded),
+      null,
+      () => Get.toNamed(AppRoutes.chat),
+    ),
+    ProfileItem(
       'Déconnexion',
       const Icon(Icons.logout_rounded),
       Colors.red.withOpacity(0.65),

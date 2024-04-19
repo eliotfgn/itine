@@ -54,6 +54,7 @@ class LogoutBottomSheet extends StatelessWidget {
                 onTap: Get.back,
                 width: Get.width * 0.40,
                 color: Colors.transparent,
+                borderColor: AppColors.primary,
                 child: const Text(
                   'Annuler',
                   style: TextStyle(color: AppColors.primary, fontSize: 16),

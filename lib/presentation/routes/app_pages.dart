@@ -3,6 +3,7 @@ import 'package:itine/presentation/routes/app_routes.dart';
 import 'package:itine/presentation/ui/auth/signin_screen.dart';
 import 'package:itine/presentation/ui/auth/signup_screen.dart';
 import 'package:itine/presentation/ui/category/categories_screen.dart';
+import 'package:itine/presentation/ui/chat/chat_screen.dart';
 import 'package:itine/presentation/ui/checkout/checkout_layout.dart';
 import 'package:itine/presentation/ui/product/product_by_category_screen.dart';
 import 'package:itine/presentation/ui/product/product_details_screen.dart';
@@ -31,7 +32,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.productDetails,
-      page: () => ProductDetailsScreen(),
+      page: () => const ProductDetailsScreen(),
     ),
     GetPage(
       name: AppRoutes.productsByCategory,
@@ -57,5 +58,9 @@ class AppPages {
       name: AppRoutes.subCategories,
       page: () => const SubCategoryScreen(),
     ),
+    GetPage(
+      name: AppRoutes.chat,
+      page: () => const ChatScreen(),
+    )
   ];
 }
