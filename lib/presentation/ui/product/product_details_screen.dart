@@ -210,7 +210,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Text(
                             'Taille',
                             style:
-                                AppTypography.headline2.copyWith(fontSize: 22),
+                                AppTypography.headline2.copyWith(fontSize: 18),
                           ),
                           const SizedBox(
                             height: 5,
@@ -263,7 +263,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Text(
                             'Couleur',
                             style:
-                                AppTypography.headline2.copyWith(fontSize: 22),
+                                AppTypography.headline2.copyWith(fontSize: 18),
                           ),
                           const SizedBox(
                             height: 5,
@@ -320,7 +320,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Text(
                             'Description',
                             style:
-                                AppTypography.headline2.copyWith(fontSize: 22),
+                                AppTypography.headline2.copyWith(fontSize: 18),
                           ),
                           const SizedBox(
                             height: 5,

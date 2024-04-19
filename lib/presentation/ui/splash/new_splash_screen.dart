@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/services/sesion_storage_service.dart';
 import 'package:itine/presentation/controllers/auth/session_controller.dart';
@@ -5,8 +7,6 @@ import 'package:itine/presentation/controllers/product/cart_controller.dart';
 import 'package:itine/presentation/controllers/product/wishlist_controller.dart';
 import 'package:itine/presentation/controllers/request/request_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 /*class SplashScreen extends StatelessWidget {
   static String routeName = "/splash";
@@ -112,8 +112,8 @@ class _SplashScreenState extends State<SplashScreen> {
                     padding: EdgeInsets.only(bottom: 50),
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(
-                            'assets/images/splash_white.png'), // Remplacez avec le chemin de votre image
+                        image: AssetImage('assets/images/splash_white.png'),
+                        // Remplacez avec le chemin de votre image
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -129,7 +129,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           Get.toNamed(AppRoutes.addressSearch);
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white, // Fond blanc du bouton
+                          backgroundColor: Colors.white, // Fond blanc du bouton
                           elevation: 5, // Ombre légère
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
