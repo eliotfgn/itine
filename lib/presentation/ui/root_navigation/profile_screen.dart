@@ -16,14 +16,19 @@ class ProfileItem {
   VoidCallback? onTap;
 }
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   final SessionController _sessionController = Get.find<SessionController>();
 
   List<ProfileItem> items = [
     ProfileItem(
-      'Modifier le profile',
+      'Modifier le profil',
       const Icon(Icons.edit_rounded),
     ),
     ProfileItem(
@@ -54,85 +59,89 @@ class ProfileScreen extends StatelessWidget {
         child: SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Profile',
-            style: AppTypography.headline1.copyWith(fontSize: 25),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          _sessionController.isConnected.isTrue
-              ? Column(
-                  children: [
-                    ...items.map(
-                      (e) => Container(
-                        margin: const EdgeInsets.only(bottom: 20),
-                        child: ListTile(
-                          title: Text(
-                            e.title,
-                            style:
-                                AppTypography.headline3.copyWith(fontSize: 17),
-                          ),
-                          leading: Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
+      child: Obx(
+        () => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Profil',
+              style: AppTypography.headline1.copyWith(fontSize: 25),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            _sessionController.isConnected.isTrue
+                ? Column(
+                    children: [
+                      ...items.map(
+                        (e) => Container(
+                          margin: const EdgeInsets.only(bottom: 20),
+                          child: ListTile(
+                            title: Text(
+                              e.title,
+                              style: AppTypography.headline3
+                                  .copyWith(fontSize: 17),
+                            ),
+                            leading: Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Center(
+                                child: e.icon,
+                              ),
+                            ),
+                            tileColor: e.color ??
+                                AppColors.secondary.withOpacity(0.05),
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 5,
+                              horizontal: 10,
+                            ),
+                            shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: Center(
-                              child: e.icon,
+                            trailing: const Icon(
+                              Icons.arrow_forward_ios_rounded,
                             ),
+                            onTap: e.onTap,
                           ),
-                          tileColor:
-                              e.color ?? AppColors.secondary.withOpacity(0.05),
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 5,
-                            horizontal: 10,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          trailing: const Icon(
-                            Icons.arrow_forward_ios_rounded,
-                          ),
-                          onTap: e.onTap,
+                        ),
+                      )
+                    ],
+                  )
+                : Column(
+                    children: [
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      const Center(
+                        child: Text(
+                          'Vous êtes actuellement déconnecté. Veuillez vous connecter pour profiter d\'une expérience personalisée.',
+                          style: AppTypography.subtitle2,
+                          textAlign: TextAlign.center,
                         ),
                       ),
-                    )
-                  ],
-                )
-              : Column(
-                  children: [
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const Center(
-                      child: Text(
-                        'Vous êtes actuellement déconnecté. Veuillez vous connecter pour profiter d\'une expérience personalisée.',
-                        style: AppTypography.subtitle2,
-                        textAlign: TextAlign.center,
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    CustomButton(
-                      onTap: () {
-                        Get.offAndToNamed(AppRoutes.login);
-                      },
-                      width: Get.width,
-                      child: const Text(
-                        'Se connecter',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    )
-                  ],
-                )
-        ],
+                      _sessionController.userCity.value != ''
+                          ? CustomButton(
+                              onTap: () {
+                                Get.offAndToNamed(AppRoutes.login);
+                              },
+                              width: Get.width,
+                              child: const Text(
+                                'Se connecter',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            )
+                          : const Text('Votre addresse n\'est pas éligible ')
+                    ],
+                  )
+          ],
+        ),
       ),
     ));
   }

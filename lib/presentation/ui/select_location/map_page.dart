@@ -2,40 +2,58 @@
 // import 'package:Itine/screens/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
 import 'package:itine/core/services/sesion_storage_service.dart';
 import 'package:itine/presentation/controllers/request/request_controller.dart';
 import 'package:itine/presentation/routes/app_routes.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../controllers/auth/session_controller.dart';
-
 // import 'package:provider/provider.dart';
 // import '../../../UseridProvider.dart';
 
-class MapPage extends StatelessWidget {
-  final String selectedLocation; // Lieu sélectionné depuis la recherche
-  final SessionController _sessionController = Get.put(SessionController());
-  final RequestController _requestController = Get.find<RequestController>();
-  final SessionStorageService storageService = SessionStorageService();
-
+class MapPage extends StatefulWidget {
+  final String selectedLocation;
   final double latitude; // Latitude du lieu sélectionné
   final double longitude; // Longitude du lieu sélectionné
   final List<double>? boundingBox;
+
+  MapPage({
+    super.key,
+    required this.selectedLocation,
+    required this.latitude,
+    required this.longitude,
+    this.boundingBox, // Rendre boundingBox nullable
+  });
+
+  @override
+  State<MapPage> createState() => _MapPageState();
+}
+
+class _MapPageState extends State<MapPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _isEligibleAddress();
+  }
+
+  // Lieu sélectionné depuis la recherche
+
+  final RequestController _requestController = Get.find<RequestController>();
+
+  final SessionStorageService storageService = SessionStorageService();
+
   final TextEditingController _addressController = TextEditingController();
 
-  MapPage(
-      {required this.selectedLocation,
-      required this.latitude,
-      required this.longitude,
-      this.boundingBox // Rendre boundingBox nullable
-      });
+  bool isEligibleCity = false;
 
   Future<void> saveAddressToSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('confirmed_address', selectedLocation);
+    await prefs.setString('confirmed_address', widget.selectedLocation);
     // Vous pouvez également ajouter d'autres données dans SharedPreferences si nécessaire
   }
 
@@ -44,7 +62,7 @@ class MapPage extends StatelessWidget {
     await prefs.setString('user_email', email);
   }
 
-  bool _isEligibleAddress() {
+  Future<void> _isEligibleAddress() async {
     // Vérifier si l'adresse est éligible en utilisant Nominatim API ou autre méthode
     // Exemple de vérification basée sur le texte de l'adresse sélectionnée
     List<String> eligibleCities = [
@@ -54,20 +72,22 @@ class MapPage extends StatelessWidget {
       'Lille',
       'Lyon'
     ];
-    String address = selectedLocation.toLowerCase();
+    String address = widget.selectedLocation.toLowerCase();
     for (var city in eligibleCities) {
       if (address.contains(city.toLowerCase())) {
-        return true;
+        await storageService.save(Keys.userCity, city);
+        setState(() {
+          isEligibleCity = true;
+        });
       }
     }
-    return false;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(selectedLocation),
+        title: Text(widget.selectedLocation),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios), // Icône arrow_back_ios
           onPressed: () {
@@ -92,7 +112,7 @@ class MapPage extends StatelessWidget {
 
           FlutterMap(
             options: MapOptions(
-              initialCenter: LatLng(latitude, longitude),
+              initialCenter: LatLng(widget.latitude, widget.longitude),
               initialZoom: 18,
             ),
             children: [
@@ -100,21 +120,21 @@ class MapPage extends StatelessWidget {
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                 userAgentPackageName: 'com.example.app',
               ),
-              if (boundingBox != null &&
-                  boundingBox!.length ==
+              if (widget.boundingBox != null &&
+                  widget.boundingBox!.length ==
                       4) // Vérifier si boundingBox n'est pas null
                 PolygonLayer(
                   polygons: [
                     Polygon(
                       points: [
-                        LatLng(boundingBox![0],
-                            boundingBox![2]), // Coin supérieur gauche
-                        LatLng(boundingBox![0],
-                            boundingBox![3]), // Coin supérieur droit
-                        LatLng(boundingBox![1],
-                            boundingBox![3]), // Coin inférieur droit
-                        LatLng(boundingBox![1],
-                            boundingBox![2]), // Coin inférieur gauche
+                        LatLng(widget.boundingBox![0],
+                            widget.boundingBox![2]), // Coin supérieur gauche
+                        LatLng(widget.boundingBox![0],
+                            widget.boundingBox![3]), // Coin supérieur droit
+                        LatLng(widget.boundingBox![1],
+                            widget.boundingBox![3]), // Coin inférieur droit
+                        LatLng(widget.boundingBox![1],
+                            widget.boundingBox![2]), // Coin inférieur gauche
                       ],
                       color: Colors.blue, // Épaisseur de la bordure
                       isFilled: true,
@@ -124,7 +144,7 @@ class MapPage extends StatelessWidget {
               MarkerLayer(
                 markers: [
                   Marker(
-                    point: LatLng(latitude, longitude),
+                    point: LatLng(widget.latitude, widget.longitude),
                     width: 80,
                     height: 80,
                     child: Container(
@@ -177,16 +197,16 @@ class MapPage extends StatelessWidget {
              },
            ),*/
           DraggableScrollableSheet(
-            initialChildSize: 0.45,
-            // Taille initiale du DraggableScrollableSheet (50% de la hauteur de l'écran)
-            minChildSize: 0.20,
-            // Taille minimale du DraggableScrollableSheet (10% de la hauteur de l'écran)
-            maxChildSize: 0.5,
-            // Taille maximale du DraggableScrollableSheet (100% de la hauteur de l'écran)
+            initialChildSize:
+                0.45, // Taille initiale du DraggableScrollableSheet (50% de la hauteur de l'écran)
+            minChildSize:
+                0.20, // Taille minimale du DraggableScrollableSheet (10% de la hauteur de l'écran)
+            maxChildSize:
+                0.5, // Taille maximale du DraggableScrollableSheet (100% de la hauteur de l'écran)
             builder: (BuildContext context, ScrollController scrollController) {
-              return _isEligibleAddress()
+              return isEligibleCity
                   ? Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(8.0),
@@ -203,12 +223,13 @@ class MapPage extends StatelessWidget {
                               children: [
                                 Container(
                                   padding: EdgeInsets.all(160.0),
-                                  height: 4.0,
-                                  // Hauteur de la poignée de glissement
-                                  width: 40.0,
-                                  // Largeur de la poignée de glissement
-                                  margin: EdgeInsets.symmetric(vertical: 8.0),
-                                  // Marge autour de la poignée
+                                  height:
+                                      4.0, // Hauteur de la poignée de glissement
+                                  width:
+                                      40.0, // Largeur de la poignée de glissement
+                                  margin: EdgeInsets.symmetric(
+                                      vertical:
+                                          8.0), // Marge autour de la poignée
                                   decoration: BoxDecoration(
                                     color: Colors.grey[400],
                                     borderRadius: BorderRadius.circular(2.0),
@@ -234,7 +255,7 @@ class MapPage extends StatelessWidget {
                                 SizedBox(height: 8.0),
                                 TextFormField(
                                   readOnly: true,
-                                  initialValue: selectedLocation,
+                                  initialValue: widget.selectedLocation,
                                   decoration: InputDecoration(
                                     contentPadding:
                                         EdgeInsets.symmetric(vertical: 10.0),
@@ -276,7 +297,7 @@ class MapPage extends StatelessWidget {
                                     /*}*/
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.primary,
+                                    primary: AppColors.primary,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
@@ -318,12 +339,13 @@ class MapPage extends StatelessWidget {
                               children: [
                                 Container(
                                   padding: EdgeInsets.all(160.0),
-                                  height: 4.0,
-                                  // Hauteur de la poignée de glissement
-                                  width: 40.0,
-                                  // Largeur de la poignée de glissement
-                                  margin: EdgeInsets.symmetric(vertical: 8.0),
-                                  // Marge autour de la poignée
+                                  height:
+                                      4.0, // Hauteur de la poignée de glissement
+                                  width:
+                                      40.0, // Largeur de la poignée de glissement
+                                  margin: EdgeInsets.symmetric(
+                                      vertical:
+                                          8.0), // Marge autour de la poignée
                                   decoration: BoxDecoration(
                                     color: Colors.grey[400],
                                     borderRadius: BorderRadius.circular(2.0),
@@ -389,20 +411,28 @@ class MapPage extends StatelessWidget {
                                         .showSnackBar(snackBar);
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.primary,
+                                    primary: AppColors.primary,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
-                                  child: const Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(vertical: 10.0),
-                                    child: Text(
-                                      'Confirmer',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      await storageService.save(
+                                          Keys.userCity, '');
+
+                                      Get.toNamed(AppRoutes.main);
+                                    },
+                                    child: const Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 10.0),
+                                      child: Text(
+                                        'Confirmer',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),

@@ -9,7 +9,6 @@ class RootNavigation extends StatelessWidget {
 
   final RootNavigationController navigationController =
       Get.put(RootNavigationController());
-  final SessionController sessionController = Get.put(SessionController());
 
   @override
   Widget build(BuildContext context) {

@@ -374,7 +374,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 ),
                               );
                             } else {
-                              Get.bottomSheet(const NotConnectedBottomSheet());
+                              Get.bottomSheet(NotConnectedBottomSheet());
                             }
                           },
                           width: Get.width * 0.55,

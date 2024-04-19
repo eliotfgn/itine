@@ -163,7 +163,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
     'Accueil',
     'Panier',
     'Favoris',
-    'Profile',
+    'Profil',
   ];
 }
 

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:itine/core/constants/app_colors.dart';
+import 'package:itine/core/services/sesion_storage_service.dart';
 import 'package:itine/presentation/ui/select_location/map_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -16,6 +17,7 @@ class AddressSearchPage extends StatefulWidget {
 class _AddressSearchPageState extends State<AddressSearchPage> {
   List<dynamic> searchResults = [];
   final TextEditingController _textController = TextEditingController();
+  final SessionStorageService storageService = SessionStorageService();
   bool valid_address_found = true;
 
   Future<void> searchAddress(String query) async {
@@ -67,9 +69,8 @@ class _AddressSearchPageState extends State<AddressSearchPage> {
   }
 
   void navigateToMapPage(BuildContext context, String selectedLocation,
-      double latitude, double longitude, List<double>? boundingBox) {
-    print(longitude);
-    print(latitude);
+      double latitude, double longitude, List<double>? boundingBox) async {
+    print(selectedLocation);
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => MapPage(
