@@ -11,6 +11,7 @@ class CustomTextFormField extends StatefulWidget {
     required this.controller,
     this.leading,
     this.radius,
+    this.suffix,
   });
 
   final String? label;
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatefulWidget {
   bool visible;
   final TextEditingController controller;
   final Widget? leading;
+  final Widget? suffix;
   final double? radius;
 
   @override
@@ -66,6 +68,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             //suffixIcon: const Icon(Icons.remove_red_eye_sharp),
             alignLabelWithHint: true,
             floatingLabelBehavior: FloatingLabelBehavior.always,
+            suffixIcon: widget.suffix,
           ),
           style: AppTypography.hint.copyWith(color: Colors.black),
           obscureText: !widget.visible,

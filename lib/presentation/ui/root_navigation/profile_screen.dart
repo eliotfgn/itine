@@ -132,18 +132,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const SizedBox(
                         height: 20,
                       ),
-                      _sessionController.userCity.value != ''
-                          ? CustomButton(
-                              onTap: () {
-                                Get.offAndToNamed(AppRoutes.login);
-                              },
-                              width: Get.width,
-                              child: const Text(
-                                'Se connecter',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            )
-                          : const Text('Votre addresse n\'est pas éligible ')
+                      CustomButton(
+                        onTap: () {
+                          Get.offAndToNamed(AppRoutes.login);
+                        },
+                        width: Get.width,
+                        child: const Text(
+                          'Se connecter',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      )
                     ],
                   )
           ],
