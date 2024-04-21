@@ -9,4 +9,6 @@ class ApiEndpoints {
 
   static const cart = '/cart-items/';
   static const wishlist = '/wish-list-items';
+
+  static const chat = '/chats';
 }
