@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:itine/core/constants/app_colors.dart';
+import 'package:itine/presentation/controllers/chat/chat_controller.dart';
 import 'package:itine/presentation/widgets/common/CustomTextFormField.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -12,6 +13,8 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _messageController = TextEditingController();
+  
+  final ChatController _chatController = Get.put(ChatController());
 
   @override
   Widget build(BuildContext context) {
