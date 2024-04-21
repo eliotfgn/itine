@@ -11,7 +11,8 @@ class ChatService extends ApiService {
     SessionStorageService storageService = SessionStorageService();
     User? user = await storageService.getConnectedUser();
 
-    Response response = await client.get(ApiEndpoints.chat);
+    Response response =
+        await client.get('${ApiEndpoints.chat}/customer/${user?.id}');
 
     return Chat.fromJson(response.data);
   }
