@@ -17,7 +17,15 @@ class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _messageController = TextEditingController();
 
   final ChatController _chatController = Get.put(ChatController());
-  int userId = 3;
+  late ScrollController scrollController;
+  int userId = 1;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    scrollController = _chatController.scrollController;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,34 +33,45 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: Text('Chat'),
       ),
-      body: Obx(
-        () => ListView(
-          children: [
-            SizedBox(
-              height: Get.height * 0.81,
-              width: Get.width,
-              child: ListView(
+      body: ListView(
+        children: [
+          SizedBox(
+            height: Get.height * 0.81,
+            width: Get.width,
+            child: Obx(
+              () => ListView(
+                controller: scrollController,
                 children: _chatController.messages
-                    .map((message) => message.senderId == userId
-                        ? UserMessageWidget(message.text)
-                        : AdminMessageWidget(message.text))
+                    .map((message) => Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          child: message.senderId == userId
+                              ? UserMessageWidget(message.text)
+                              : AdminMessageWidget(message.text),
+                        ))
                     .toList(),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: CustomTextFormField(
-                hint: 'Ecrire un message',
-                visible: true,
-                controller: _messageController,
-                suffix: const Icon(
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: CustomTextFormField(
+              hint: 'Ecrire un message',
+              visible: true,
+              controller: _messageController,
+              suffix: GestureDetector(
+                onTap: () async {
+                  await _chatController.sendMessage(
+                      _messageController.text, scrollController);
+                  _messageController.text = '';
+                },
+                child: const Icon(
                   Icons.send_rounded,
                   color: AppColors.primary,
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

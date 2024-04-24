@@ -18,12 +18,12 @@ class AdminMessageWidget extends StatelessWidget {
             vertical: 10,
             horizontal: 20,
           ),
-          margin: const EdgeInsets.only(right: 15),
+          margin: const EdgeInsets.only(left: 15),
           constraints: BoxConstraints(
             maxWidth: Get.width * 0.75,
           ),
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.2),
+            color: AppColors.secondary.withOpacity(0.4),
             borderRadius: const BorderRadius.only(
               topRight: Radius.circular(15),
               topLeft: Radius.circular(15),
@@ -33,7 +33,7 @@ class AdminMessageWidget extends StatelessWidget {
           child: Text(
             text,
             style: const TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontWeight: FontWeight.w500,
             ),
           ),
